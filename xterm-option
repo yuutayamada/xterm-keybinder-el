@@ -1,0 +1,99 @@
+#!/bin/sh
+
+\cat <<EOF
+'XTerm.VT100.translations: #override \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> colon: string("\033[=") string(0x3a) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> semicolon: string("\033[=") string(0x3b) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> comma: string("\033[=") string(0x2c) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> period: string("\033[=") string(0x2e) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> apostrophe: string("\033[=") string(0x27) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 0: string("\033[=0")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 1: string("\033[=1")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 2: string("\033[=2")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 3: string("\033[=3")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 4: string("\033[=4")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 5: string("\033[=5")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 6: string("\033[=6")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 7: string("\033[=7")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 8: string("\033[=8")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 9: string("\033[=9")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> a: string("\033[=A")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> b: string("\033[=B")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> c: string("\033[=C")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> d: string("\033[=D")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> e: string("\033[=E")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> f: string("\033[=F")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> g: string("\033[=G")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> h: string("\033[=H")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> i: string("\033[=I")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> j: string("\033[=J")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> k: string("\033[=K")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> l: string("\033[=L")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> m: string("\033[=M")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> n: string("\033[=N")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> o: string("\033[=O")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> p: string("\033[=P")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> q: string("\033[=Q")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> r: string("\033[=R")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> s: string("\033[=S")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> t: string("\033[=T")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> u: string("\033[=U")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> v: string("\033[=V")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> w: string("\033[=W")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> x: string("\033[=X")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> y: string("\033[=Y")  \n\
+  Ctrl Shift ~Alt ~Super ~Hyper <KeyPress> z: string("\033[=Z")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> a: string("\033[=a")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> b: string("\033[=b")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> c: string("\033[=c")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> d: string("\033[=d")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> e: string("\033[=e")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> f: string("\033[=f")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> g: string("\033[=g")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> h: string("\033[=h")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> i: string("\033[=i")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> j: string("\033[=j")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> k: string("\033[=k")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> l: string("\033[=l")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> m: string("\033[=m")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> n: string("\033[=n")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> o: string("\033[=o")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> p: string("\033[=p")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> q: string("\033[=q")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> r: string("\033[=r")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> s: string("\033[=s")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> t: string("\033[=t")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> u: string("\033[=u")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> v: string("\033[=v")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> w: string("\033[=w")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> x: string("\033[=x")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> y: string("\033[=y")  \n\
+  Ctrl Alt ~Shift ~Super ~Hyper <KeyPress> z: string("\033[=z")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> a: string("\033[==a")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> b: string("\033[==b")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> c: string("\033[==c")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> d: string("\033[==d")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> e: string("\033[==e")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> f: string("\033[==f")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> g: string("\033[==g")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> h: string("\033[==h")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> i: string("\033[==i")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> j: string("\033[==j")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> k: string("\033[==k")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> l: string("\033[==l")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> m: string("\033[==m")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> n: string("\033[==n")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> o: string("\033[==o")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> p: string("\033[==p")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> q: string("\033[==q")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> r: string("\033[==r")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> s: string("\033[==s")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> t: string("\033[==t")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> u: string("\033[==u")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> v: string("\033[==v")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> w: string("\033[==w")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> x: string("\033[==x")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> y: string("\033[==y")  \n\
+  Ctrl Alt Shift ~Super ~Hyper <KeyPress> z: string("\033[==z")  \n\
+  Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string("\033[= ")'
+EOF
