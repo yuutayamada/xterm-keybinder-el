@@ -21,9 +21,26 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-;; See README.md
-
+;; This package let your terminal Emacs C-[;:',.0-9]-keys,
+;; C-S-[a-z]-keys, C-M-[a-z]-keys and C-M-S-[a-z]-keys on xterm.
+;;
+;; Usage:
+;; Put below configuration to your .emacs
+;;
+;; -- configuration --
+;;   (when (getenv "XTERM_VERSION")
+;;     (add-hook 'terminal-init-xterm-hook 'xterm-keybinder-setup))
+;; -- configuration end --
+;;
+;; Then start your emacs with xterm and the option.
+;;
+;; -- shell script example --
+;;   #!/bin/sh
+;;   xtermopt=path/to/this-repository/xterm-option
+;;   eval "xterm -xrm `${xtermopt}` -e emacsclient -t -a ''"
+;; -- shell script example end --
+;;
+;; See also: https://github.com/yuutayamada/xterm-keybinder-el/blob/master/README.md
 ;;; Code:
 
 (require 'cl-lib)
