@@ -121,9 +121,9 @@ You can use this to insert xterm configuration by yourself."
   (let ((p (cl-case prefix
              (C     "Ctrl ~Shift ~Alt ~Super ~Hyper")
              (S     "Shift ~Ctrl ~Alt ~Super ~Hyper")
-             (C-S   "Ctrl Shift ~Alt ~Super ~Hyper")
-             (C-M   "Ctrl Alt ~Shift ~Super ~Hyper")
-             (C-M-S "Ctrl Alt Shift ~Super ~Hyper")))
+             (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
+             (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
+             (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")))
         (s (if c3 (xterm-keybinder-convert c3) "")))
     (format xterm-keybinder-format p c1 c2 s)))
 
