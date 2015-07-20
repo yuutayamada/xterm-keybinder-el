@@ -45,6 +45,13 @@
 
 (require 'cl-lib)
 
+(defvar xterm-keybinder-xterm-keybinds
+  '("Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font()"
+    "Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font()")
+  "List of xterm's function keybinds.
+This configuration is only used at when you make xterm's key bind option by
+‘xterm-keybinder-insert’.  By default, use C-+ and C-- to change font size.")
+
 (defconst xterm-keybinder-CSI "\033[") ; this means M-[ or ESC [
 ;; Use private key sequence of CSI
 ;; Private keys: #x3c, #x3d, #x3e, or #x3f.
@@ -89,6 +96,11 @@ You can use this to insert xterm configuration by yourself."
   (let ((ins (lambda (list)
                (insert (concat (mapconcat 'identity list "\n") "\n")))))
     (insert "\nXTerm.VT100.translations: #override \\n\\\n")
+    ;; XTerm's functions
+    (when xterm-keybinder-xterm-keybinds
+      (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
+                           xterm-keybinder-xterm-keybinds)))
+    ;; Control, Alt and Shift keybinds
     (cl-loop for char in xterm-keybinder-C-char-list
              if (pcase char
                   (`"." "period")
