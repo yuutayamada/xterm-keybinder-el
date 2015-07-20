@@ -2,6 +2,8 @@
 
 \cat <<EOF
 'XTerm.VT100.translations: #override \n\
+  Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
+  Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font() \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> colon: string("\033[=") string(0x3a) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> semicolon: string("\033[=") string(0x3b) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> comma: string("\033[=") string(0x2c) \n\
