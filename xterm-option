@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# You can reproduce same below configuration by xterm-keybinder-insert
+# function. See also xterm-keybinder-xterm-keybinds variable to change
+# default xterm's functions.
+
 \cat <<EOF
 'XTerm.VT100.translations: #override \n\
   Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
