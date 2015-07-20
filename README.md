@@ -30,6 +30,15 @@ If you put xterm-option of this package in your xterm resource,
 you may have trouble because some applications already used overridden
 key sequences.
 
+Also you may need following configuration at .Xresource and update it by
+xrdb command.
+
+```sh
+XTerm*VT100.eightBitInput: false
+XTerm*modifyOtherKeys: 1
+XTerm*vt100.formatOtherKeys: 1
+```
+
 ## Contribution
 
 I'm really beginner of xterm, so let me know if you have better idea.

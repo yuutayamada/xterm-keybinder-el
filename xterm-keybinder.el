@@ -40,6 +40,16 @@
 ;;   eval "xterm -xrm `${xtermopt}` -e emacsclient -t -a ''"
 ;; -- shell script example end --
 ;;
+;; Note:
+;; You may need following configuration at .Xresource and update it by
+;; xrdb command.
+;;
+;; -- configuration
+;;   XTerm*VT100.eightBitInput: false
+;;   XTerm*modifyOtherKeys: 1
+;;   XTerm*vt100.formatOtherKeys: 1
+;; -- end of configuration
+;;
 ;; See also: https://github.com/yuutayamada/xterm-keybinder-el/blob/master/README.md
 ;;; Code:
 
