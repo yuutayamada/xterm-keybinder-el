@@ -97,14 +97,16 @@ This configuration is only used at when you make xterm's key bind option by
              do (define-key map (concat prefix char) C-M-key)
              do (define-key map (concat prefix "=" char) C-M-S-key))
     ;; Treat irregular keybinds
-    (define-key map (concat prefix " ") (kbd "S-SPC"))))
+    (define-key map (concat prefix " ")   (kbd "S-SPC"))
+    (define-key map (concat prefix "== ") (kbd "C-S-SPC"))
+    (define-key map (concat prefix "= ")  (kbd "C-M-S-SPC"))))
 
 (defun xterm-keybinder-insert ()
   "Insert configuration for XTerm.
 You can use this to insert xterm configuration by yourself."
   (interactive)
-  (let ((ins (lambda (list)
-               (insert (concat (mapconcat 'identity list "\n") "\n")))))
+  (let ((ins (lambda (list &optional end)
+               (insert (concat (mapconcat 'identity list "\n") (or end "\n"))))))
     (insert "\nXTerm.VT100.translations: #override \\n\\\n")
     ;; XTerm's functions
     (when xterm-keybinder-xterm-keybinds
@@ -130,9 +132,14 @@ You can use this to insert xterm configuration by yourself."
              collect (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) into cms
              finally (funcall ins (append cs cm cms)))
     ;; Space
-    (let ((s (xterm-keybinder-make-format 'S "space" " ")))
-      ;; Omit \n\ on the last
-      (insert (substring s 0 (- (length s) 4))))))
+    (let* ((last (xterm-keybinder-make-format 'C-M-S "space" "= "))
+           (spc (funcall ins
+                         (list (xterm-keybinder-make-format 'S "space" " ")
+                               (xterm-keybinder-make-format 'C-S "space" "== ")
+                               ;; Omit \n\ on the last ?\
+                               (substring last 0 (- (length last) 5)))
+                         "")))
+      (insert spc))))
 
 (defun xterm-keybinder-convert (str)
   "Convert STR to list of Hex expression for xterm configuration."
