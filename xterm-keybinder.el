@@ -41,7 +41,7 @@
 ;; -- shell script example end --
 ;;
 ;; Note:
-;; You may need following configuration at .Xresource and update it by
+;; You may need following configuration at .Xresources and update it by
 ;; xrdb command.
 ;;
 ;; -- configuration

@@ -30,7 +30,7 @@ If you put xterm-option of this package in your xterm resource,
 you may have trouble because some applications already used overridden
 key sequences.
 
-Also you may need following configuration at .Xresource and update it by
+Also you may need following configuration at .Xresources and update it by
 xrdb command.
 
 ```sh
