@@ -86,28 +86,31 @@
   "Insert configuration for XTerm.
 You can use this to insert xterm configuration by yourself."
   (interactive)
-  (insert "\nXTerm.VT100.translations: #override \\n\\\n")
-  (cl-loop for char in xterm-keybinder-C-char-list
-           if (pcase char
-                (`"." "period")
-                (`"," "comma")
-                (`":" "colon")
-                (`";" "semicolon")
-                ;; xrdb occur warning if it uses "'" as xresource
-                ;; configuration, so this conversion has to do.
-                (`"'" "apostrophe"))
-           collect (xterm-keybinder-make-format 'C it "" char) into C-keys
-           else collect (xterm-keybinder-make-format 'C char char) into C-keys
-           finally (insert (concat (mapconcat 'identity C-keys "\n") "\n")))
-  (cl-loop for c from ?a to ?z
-           for char = (char-to-string c)
-           collect (xterm-keybinder-make-format 'C-S char (capitalize char)) into cs
-           collect (xterm-keybinder-make-format 'C-M char char) into cm
-           collect (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) into cms
-           finally (insert (concat (mapconcat 'identity (append cs cm cms) "\n") "\n")))
-  (let ((s (xterm-keybinder-make-format 'S "space" " ")))
-    ;; Omit \n\ on the last
-    (insert (substring s 0 (- (length s) 4)))))
+  (let ((ins (lambda (list)
+               (insert (concat (mapconcat 'identity list "\n") "\n")))))
+    (insert "\nXTerm.VT100.translations: #override \\n\\\n")
+    (cl-loop for char in xterm-keybinder-C-char-list
+             if (pcase char
+                  (`"." "period")
+                  (`"," "comma")
+                  (`":" "colon")
+                  (`";" "semicolon")
+                  ;; xrdb occur warning if it uses "'" as xresource
+                  ;; configuration, so this conversion has to do.
+                  (`"'" "apostrophe"))
+             collect (xterm-keybinder-make-format 'C it "" char) into C-keys
+             else collect (xterm-keybinder-make-format 'C char char) into C-keys
+             finally (funcall ins C-keys))
+    (cl-loop for c from ?a to ?z
+             for char = (char-to-string c)
+             collect (xterm-keybinder-make-format 'C-S char (capitalize char)) into cs
+             collect (xterm-keybinder-make-format 'C-M char char) into cm
+             collect (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) into cms
+             finally (funcall ins (append cs cm cms)))
+    ;; Space
+    (let ((s (xterm-keybinder-make-format 'S "space" " ")))
+      ;; Omit \n\ on the last
+      (insert (substring s 0 (- (length s) 4))))))
 
 (defun xterm-keybinder-convert (str)
   "Convert STR to list of Hex expression for xterm configuration."
