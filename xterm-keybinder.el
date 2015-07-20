@@ -97,9 +97,10 @@ This configuration is only used at when you make xterm's key bind option by
              do (define-key map (concat prefix char) C-M-key)
              do (define-key map (concat prefix "=" char) C-M-S-key))
     ;; Treat irregular keybinds
-    (define-key map (concat prefix " ")   (kbd "S-SPC"))
-    (define-key map (concat prefix "== ") (kbd "C-S-SPC"))
-    (define-key map (concat prefix "= ")  (kbd "C-M-S-SPC"))))
+    (define-key map (concat prefix " ")    (kbd "S-SPC"))
+    (define-key map (concat prefix "== ")  (kbd "C-S-SPC"))
+    (define-key map (concat prefix "=== ") (kbd "C-M-SPC"))
+    (define-key map (concat prefix "= ")   (kbd "C-M-S-SPC"))))
 
 (defun xterm-keybinder-insert ()
   "Insert configuration for XTerm.
@@ -136,6 +137,7 @@ You can use this to insert xterm configuration by yourself."
            (spc (funcall ins
                          (list (xterm-keybinder-make-format 'S "space" " ")
                                (xterm-keybinder-make-format 'C-S "space" "== ")
+                               (xterm-keybinder-make-format 'C-M "space" "=== ")
                                ;; Omit \n\ on the last ?\
                                (substring last 0 (- (length last) 5)))
                          "")))

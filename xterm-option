@@ -103,5 +103,6 @@
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> z: string("\033[==z")  \n\
   Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string("\033[= ")  \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> space: string("\033[=== ")  \n\
+  Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> space: string("\033[==== ")  \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> space: string("\033[== ")'
 EOF
