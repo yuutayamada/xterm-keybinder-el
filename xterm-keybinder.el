@@ -173,14 +173,13 @@ You can use this to insert xterm configuration by yourself."
              (push (format fmt-hyper char c) hyper)
              finally (funcall ins (reverse (append hyper super cms cm cs))))
     ;; Space
-    (let* ((last (xterm-keybinder-make-format 'C-M-S "space" "= "))
+    (let* ((last (format (xterm-keybinder-get-modifier-event 'shift)
+                         "space" ?\s))
            (spc (funcall ins
-                         (list (format (xterm-keybinder-get-modifier-event 'shift)
-                                       "space" ?\s)
+                         (list (xterm-keybinder-make-format 'C-M-S "space" "= ")
                                (xterm-keybinder-make-format 'C-S "space" " ")
                                (xterm-keybinder-make-format 'C-M "space" "=== ")
-                               ;; Omit \n\ on the last ?\
-                               (substring last 0 (- (length last) 5)))
+                               (substring last 0 (- (length last) 4)))
                          "")))
       (insert spc))))
 

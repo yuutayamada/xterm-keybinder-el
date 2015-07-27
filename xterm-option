@@ -239,8 +239,8 @@
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> bar: string(0x18) string(0x40) string(0x68) string(0x7c) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> braceright: string(0x18) string(0x40) string(0x68) string(0x7d) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> asciitilde: string(0x18) string(0x40) string(0x68) string(0x7e) \n\
-  Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x53) string(0x20) \n\
+  Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> space: string("\033[== ")  \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> space: string("\033[= ")  \n\
   Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> space: string("\033[==== ")  \n\
-  Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> space: string("\033[== ")'
+  Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x53) string(0x20)'
 EOF
