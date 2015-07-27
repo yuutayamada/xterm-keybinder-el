@@ -101,6 +101,32 @@
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> x: string("\033[==x")  \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> y: string("\033[==y")  \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> z: string("\033[==z")  \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> a: string(0x18) string(0x40) string(0x73) string(0x61) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> b: string(0x18) string(0x40) string(0x73) string(0x62) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> c: string(0x18) string(0x40) string(0x73) string(0x63) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> d: string(0x18) string(0x40) string(0x73) string(0x64) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> e: string(0x18) string(0x40) string(0x73) string(0x65) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> f: string(0x18) string(0x40) string(0x73) string(0x66) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> g: string(0x18) string(0x40) string(0x73) string(0x67) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> h: string(0x18) string(0x40) string(0x73) string(0x68) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> i: string(0x18) string(0x40) string(0x73) string(0x69) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> j: string(0x18) string(0x40) string(0x73) string(0x6a) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> k: string(0x18) string(0x40) string(0x73) string(0x6b) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> l: string(0x18) string(0x40) string(0x73) string(0x6c) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> m: string(0x18) string(0x40) string(0x73) string(0x6d) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> n: string(0x18) string(0x40) string(0x73) string(0x6e) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> o: string(0x18) string(0x40) string(0x73) string(0x6f) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> p: string(0x18) string(0x40) string(0x73) string(0x70) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> q: string(0x18) string(0x40) string(0x73) string(0x71) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> r: string(0x18) string(0x40) string(0x73) string(0x72) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> s: string(0x18) string(0x40) string(0x73) string(0x73) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> t: string(0x18) string(0x40) string(0x73) string(0x74) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> u: string(0x18) string(0x40) string(0x73) string(0x75) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> v: string(0x18) string(0x40) string(0x73) string(0x76) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> w: string(0x18) string(0x40) string(0x73) string(0x77) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> x: string(0x18) string(0x40) string(0x73) string(0x78) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> y: string(0x18) string(0x40) string(0x73) string(0x79) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> z: string(0x18) string(0x40) string(0x73) string(0x7a) \n\
   Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string("\033[= ")  \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> space: string("\033[=== ")  \n\
   Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> space: string("\033[==== ")  \n\
