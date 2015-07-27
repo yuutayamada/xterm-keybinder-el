@@ -146,7 +146,7 @@ You can use this to insert xterm configuration by yourself."
     (when xterm-keybinder-xterm-keybinds
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
                            xterm-keybinder-xterm-keybinds)))
-    ;; Control, Alt and Shift keybinds
+    ;; Control keybinds
     (cl-loop with fmt-ctrl = (xterm-keybinder-get-modifier-event 'ctrl)
              for char in xterm-keybinder-C-char-list
              for c = (string-to-char char)
@@ -156,23 +156,22 @@ You can use this to insert xterm configuration by yourself."
              collect (format fmt-ctrl it c) into C-keys
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
-    (cl-loop for c from ?a to ?z
-             for char = (char-to-string c)
-             collect (xterm-keybinder-make-format 'C-S char (capitalize char)) into cs
-             collect (xterm-keybinder-make-format 'C-M char char) into cm
-             collect (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) into cms
-             finally (funcall ins (append cs cm cms)))
-    ;; Super and Hyper
-    (cl-loop with super and hyper
+    ;; Control, Alt, Shift, Super and Hyper
+    (cl-loop with cs and cm and cms and super and hyper
              with fmt-super = (xterm-keybinder-get-modifier-event 'super)
              with fmt-hyper = (xterm-keybinder-get-modifier-event 'hyper)
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
+             if (<= ?a c ?z) do
+             (push (xterm-keybinder-make-format 'C-M char char) cm)
+             else if (<= ?A c ?Z) do
+             (push (xterm-keybinder-make-format 'C-S char char) cs)
+             (push (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) cms)
              unless (<= ?A c ?Z) do
              (push (format fmt-super char c) super)
              (push (format fmt-hyper char c) hyper)
-             finally (funcall ins (reverse (append hyper super))))
+             finally (funcall ins (reverse (append hyper super cms cm cs))))
     ;; Space
     (let* ((last (xterm-keybinder-make-format 'C-M-S "space" "= "))
            (spc (funcall ins
