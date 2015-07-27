@@ -8,21 +8,21 @@
 'XTerm.VT100.translations: #override \n\
   Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
   Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font() \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> colon: string("\033[=") string(0x3a) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> semicolon: string("\033[=") string(0x3b) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> comma: string("\033[=") string(0x2c) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> period: string("\033[=") string(0x2e) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> apostrophe: string("\033[=") string(0x27) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 0: string("\033[=0")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 1: string("\033[=1")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 2: string("\033[=2")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 3: string("\033[=3")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 4: string("\033[=4")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 5: string("\033[=5")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 6: string("\033[=6")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 7: string("\033[=7")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 8: string("\033[=8")  \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 9: string("\033[=9")  \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> colon: string(0x18) string(0x40) string(0x63) string(0x3a) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> semicolon: string(0x18) string(0x40) string(0x63) string(0x3b) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> comma: string(0x18) string(0x40) string(0x63) string(0x2c) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> period: string(0x18) string(0x40) string(0x63) string(0x2e) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> apostrophe: string(0x18) string(0x40) string(0x63) string(0x27) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 0: string(0x18) string(0x40) string(0x63) string(0x30) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 1: string(0x18) string(0x40) string(0x63) string(0x31) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 2: string(0x18) string(0x40) string(0x63) string(0x32) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 3: string(0x18) string(0x40) string(0x63) string(0x33) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 4: string(0x18) string(0x40) string(0x63) string(0x34) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 5: string(0x18) string(0x40) string(0x63) string(0x35) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 6: string(0x18) string(0x40) string(0x63) string(0x36) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 7: string(0x18) string(0x40) string(0x63) string(0x37) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 8: string(0x18) string(0x40) string(0x63) string(0x38) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 9: string(0x18) string(0x40) string(0x63) string(0x39) \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> a: string("\033[=A")  \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> b: string("\033[=B")  \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> c: string("\033[=C")  \n\
