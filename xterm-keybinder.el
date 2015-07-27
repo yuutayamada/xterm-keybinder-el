@@ -141,7 +141,7 @@ You can use this to insert xterm configuration by yourself."
   (interactive)
   (let ((ins (lambda (list &optional end)
                (insert (concat (mapconcat 'identity list "\n") (or end "\n"))))))
-    (insert "\nXTerm.VT100.translations: #override \\n\\\n")
+    (insert "XTerm.VT100.translations: #override \\n\\\n")
     ;; XTerm's functions
     (when xterm-keybinder-xterm-keybinds
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
