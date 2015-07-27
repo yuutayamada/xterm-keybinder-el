@@ -71,9 +71,8 @@ This configuration is only used at when you make xterm's key bind option by
 (defconst xterm-keybinder-prefix
   (concat xterm-keybinder-CSI (format "%c" xterm-keybinder-private-char)))
 (defconst xterm-keybinder-format
-  (concat "  %s <KeyPress> %s: string(\"\\033["
-          (format "%c" xterm-keybinder-private-char)
-          "%s\") %s \\n\\"))
+  (format "  %%s <KeyPress> %%s: string(\"\\033[%c%%s\") %%s \\n\\"
+          xterm-keybinder-private-char))
 (defconst xterm-keybinder-C-char-list
   '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
 
