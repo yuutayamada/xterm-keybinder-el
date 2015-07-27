@@ -168,6 +168,9 @@ You can use this to insert xterm configuration by yourself."
              else if (<= ?A c ?Z) do
              (push (xterm-keybinder-make-format 'C-S char char) cs)
              (push (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) cms)
+             else if (eq c ?\s) do
+             (push (xterm-keybinder-make-format 'C-S char " ") cs)
+             (push (xterm-keybinder-make-format 'C-M-S char "= ") cms)
              unless (<= ?A c ?Z) do
              (push (format fmt-super char c) super)
              (push (format fmt-hyper char c) hyper)
@@ -176,9 +179,7 @@ You can use this to insert xterm configuration by yourself."
     (let* ((last (format (xterm-keybinder-get-modifier-event 'shift)
                          "space" ?\s))
            (spc (funcall ins
-                         (list (xterm-keybinder-make-format 'C-M-S "space" "= ")
-                               (xterm-keybinder-make-format 'C-S "space" " ")
-                               (xterm-keybinder-make-format 'C-M "space" "=== ")
+                         (list (xterm-keybinder-make-format 'C-M "space" "=== ")
                                (substring last 0 (- (length last) 4)))
                          "")))
       (insert spc))))
