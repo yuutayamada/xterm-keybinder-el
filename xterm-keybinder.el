@@ -167,10 +167,12 @@ You can use this to insert xterm configuration by yourself."
               (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
               (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (super "Super ~Ctrl ~Alt ~Shift ~Hyper"))
-            (cl-case sym
-              (shift (format "%s%s" base "string(0x53)"))
-              (ctrl  (format "%s%s" base "string(0x63)"))
-              (super (format "%s%s" base "string(0x73)"))))))
+            (format "%s%s" base (format "string(%s)"
+                                        (cl-case sym
+                                          (shift "0x53")
+                                          (ctrl  "0x63")
+                                          (super "0x73")))))))
+
 
 (provide 'xterm-keybinder)
 ;;; xterm-keybinder.el ends here
