@@ -126,12 +126,14 @@ You can use this to insert xterm configuration by yourself."
              collect (xterm-keybinder-make-format 'C it "" char) into C-keys
              else collect (xterm-keybinder-make-format 'C char char) into C-keys
              finally (funcall ins C-keys))
-    (cl-loop for c from ?a to ?z
+    (cl-loop with fmt-super = (xterm-keybinder-get-modifier-event 'super)
+             for c from ?a to ?z
              for char = (char-to-string c)
              collect (xterm-keybinder-make-format 'C-S char (capitalize char)) into cs
              collect (xterm-keybinder-make-format 'C-M char char) into cm
              collect (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) into cms
-             finally (funcall ins (append cs cm cms)))
+             collect (format fmt-super char c) into super
+             finally (funcall ins (append cs cm cms super)))
     ;; Space
     (let* ((last (xterm-keybinder-make-format 'C-M-S "space" "= "))
            (spc (funcall ins
@@ -160,6 +162,15 @@ You can use this to insert xterm configuration by yourself."
              (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")))
         (s (if c3 (xterm-keybinder-convert c3) "")))
     (format xterm-keybinder-format p c1 c2 s)))
+
+(defun xterm-keybinder-get-modifier-event (sym)
+  ;; See also ‘event-apply-XXX-modifier’
+  (let ((base "string(0x18) string(0x40) "))
+    (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
+            (cl-case sym
+              (super "Super ~Ctrl ~Alt ~Shift ~Hyper"))
+            (cl-case sym
+              (super (format "%s%s" base "string(0x73)"))))))
 
 (provide 'xterm-keybinder)
 ;;; xterm-keybinder.el ends here
