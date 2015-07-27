@@ -83,10 +83,6 @@ This configuration is only used at when you make xterm's key bind option by
   (interactive)
   (let ((prefix xterm-keybinder-prefix)
         (map input-decode-map))
-    ;; C-[0-9;:',.]
-    (cl-loop for c in xterm-keybinder-C-char-list
-             for def = (kbd (concat "C-" c))
-             do (define-key map (concat prefix c) def))
     ;; C-S-[a-z], C-M-[a-z] and C-M-S-[a-z]
     (cl-loop for c from ?a to ?z
              for char = (char-to-string c)
@@ -114,7 +110,9 @@ You can use this to insert xterm configuration by yourself."
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
                            xterm-keybinder-xterm-keybinds)))
     ;; Control, Alt and Shift keybinds
-    (cl-loop for char in xterm-keybinder-C-char-list
+    (cl-loop with fmt-ctrl = (xterm-keybinder-get-modifier-event 'ctrl)
+             for char in xterm-keybinder-C-char-list
+             for c = (string-to-char char)
              if (pcase char
                   (`"." "period")
                   (`"," "comma")
@@ -123,8 +121,8 @@ You can use this to insert xterm configuration by yourself."
                   ;; xrdb occur warning if it uses "'" as xresource
                   ;; configuration, so this conversion has to do.
                   (`"'" "apostrophe"))
-             collect (xterm-keybinder-make-format 'C it "" char) into C-keys
-             else collect (xterm-keybinder-make-format 'C char char) into C-keys
+             collect (format fmt-ctrl it c) into C-keys
+             else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
     (cl-loop with fmt-super = (xterm-keybinder-get-modifier-event 'super)
              for c from ?a to ?z
@@ -155,7 +153,6 @@ You can use this to insert xterm configuration by yourself."
 (defun xterm-keybinder-make-format (prefix c1 c2 &optional c3)
   "Make adapt format string from PREFIX, C1, and C2."
   (let ((p (cl-case prefix
-             (C     "Ctrl ~Shift ~Alt ~Super ~Hyper")
              (S     "Shift ~Ctrl ~Alt ~Super ~Hyper")
              (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
              (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
@@ -168,8 +165,10 @@ You can use this to insert xterm configuration by yourself."
   (let ((base "string(0x18) string(0x40) "))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
             (cl-case sym
+              (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (super "Super ~Ctrl ~Alt ~Shift ~Hyper"))
             (cl-case sym
+              (ctrl  (format "%s%s" base "string(0x63)"))
               (super (format "%s%s" base "string(0x73)"))))))
 
 (provide 'xterm-keybinder)
