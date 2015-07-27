@@ -124,13 +124,15 @@ You can use this to insert xterm configuration by yourself."
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
     (cl-loop with fmt-super = (xterm-keybinder-get-modifier-event 'super)
+             with fmt-hyper = (xterm-keybinder-get-modifier-event 'hyper)
              for c from ?a to ?z
              for char = (char-to-string c)
              collect (xterm-keybinder-make-format 'C-S char (capitalize char)) into cs
              collect (xterm-keybinder-make-format 'C-M char char) into cm
              collect (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) into cms
              collect (format fmt-super char c) into super
-             finally (funcall ins (append cs cm cms super)))
+             collect (format fmt-hyper char c) into hyper
+             finally (funcall ins (append cs cm cms super hyper)))
     ;; Space
     (let* ((last (xterm-keybinder-make-format 'C-M-S "space" "= "))
            (spc (funcall ins
@@ -166,13 +168,14 @@ You can use this to insert xterm configuration by yourself."
             (cl-case sym
               (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
               (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
-              (super "Super ~Ctrl ~Alt ~Shift ~Hyper"))
+              (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
+              (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super"))
             (format "%s%s" base (format "string(%s)"
                                         (cl-case sym
                                           (shift "0x53")
                                           (ctrl  "0x63")
-                                          (super "0x73")))))))
-
+                                          (super "0x73")
+                                          (hyper "0x68")))))))
 
 (provide 'xterm-keybinder)
 ;;; xterm-keybinder.el ends here
