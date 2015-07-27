@@ -127,7 +127,7 @@
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> x: string(0x18) string(0x40) string(0x73) string(0x78) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> y: string(0x18) string(0x40) string(0x73) string(0x79) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> z: string(0x18) string(0x40) string(0x73) string(0x7a) \n\
-  Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string("\033[= ")  \n\
+  Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x53) string(0x20) \n\
   Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> space: string("\033[=== ")  \n\
   Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> space: string("\033[==== ")  \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> space: string("\033[== ")'
