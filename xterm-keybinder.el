@@ -93,7 +93,6 @@ This configuration is only used at when you make xterm's key bind option by
              do (define-key map (concat prefix char) C-M-key)
              do (define-key map (concat prefix "=" char) C-M-S-key))
     ;; Treat irregular keybinds
-    (define-key map (concat prefix " ")    (kbd "S-SPC"))
     (define-key map (concat prefix "== ")  (kbd "C-S-SPC"))
     (define-key map (concat prefix "=== ") (kbd "C-M-SPC"))
     (define-key map (concat prefix "= ")   (kbd "C-M-S-SPC"))))
@@ -135,7 +134,8 @@ You can use this to insert xterm configuration by yourself."
     ;; Space
     (let* ((last (xterm-keybinder-make-format 'C-M-S "space" "= "))
            (spc (funcall ins
-                         (list (xterm-keybinder-make-format 'S "space" " ")
+                         (list (format (xterm-keybinder-get-modifier-event 'shift)
+                                       "space" ?\s)
                                (xterm-keybinder-make-format 'C-S "space" "== ")
                                (xterm-keybinder-make-format 'C-M "space" "=== ")
                                ;; Omit \n\ on the last ?\
@@ -153,7 +153,6 @@ You can use this to insert xterm configuration by yourself."
 (defun xterm-keybinder-make-format (prefix c1 c2 &optional c3)
   "Make adapt format string from PREFIX, C1, and C2."
   (let ((p (cl-case prefix
-             (S     "Shift ~Ctrl ~Alt ~Super ~Hyper")
              (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
              (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
              (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")))
@@ -165,9 +164,11 @@ You can use this to insert xterm configuration by yourself."
   (let ((base "string(0x18) string(0x40) "))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
             (cl-case sym
+              (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
               (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (super "Super ~Ctrl ~Alt ~Shift ~Hyper"))
             (cl-case sym
+              (shift (format "%s%s" base "string(0x53)"))
               (ctrl  (format "%s%s" base "string(0x63)"))
               (super (format "%s%s" base "string(0x73)"))))))
 
