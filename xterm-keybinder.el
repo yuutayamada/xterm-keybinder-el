@@ -76,6 +76,45 @@ This configuration is only used at when you make xterm's key bind option by
 (defconst xterm-keybinder-C-char-list
   '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
 
+;; based on XTerm's keysym.map
+(defconst xterm-keybinder-keysym-list
+  '((?\s . "space")
+    (?!  . "exclam")
+    (?\" . "quotedbl")
+    (?#  . "numbersign")
+    (?$  . "dollar")
+    (?%  . "percent")
+    (?&  . "ampersand")
+    (?\' . "apostrophe")
+    (?\( . "parenleft")
+    (?\) . "parenright")
+    (?*  . "asterisk")
+    (?+  . "plus")
+    (?,  . "comma")
+    (?-  . "minus")
+    (?.  . "period")
+    (?/  . "slash")
+    ;; 0-9
+    (?:  . "colon")
+    (?\; . "semicolon")
+    (?<  . "less")
+    (?=  . "equal")
+    (?>  . "greater")
+    (?\? . "question")
+    (?@  . "at")
+    ;; A-Z
+    (?\[ . "bracketleft")
+    (?\\ . "backslash")
+    (?\] . "bracketright")
+    (?^  . "asciicircum")
+    (?_  . "underscore")
+    (?`  . "grave")
+    ;; a-z
+    (?\{ . "braceleft")
+    (?|  . "bar")
+    (?\} . "braceright")
+    (?~  . "asciitilde")))
+
 ;;;###autoload
 (defun xterm-keybinder-setup ()
   "Enable Emacs keybinds even in the xterm terminal Emacs."
@@ -111,14 +150,9 @@ You can use this to insert xterm configuration by yourself."
     (cl-loop with fmt-ctrl = (xterm-keybinder-get-modifier-event 'ctrl)
              for char in xterm-keybinder-C-char-list
              for c = (string-to-char char)
-             if (pcase char
-                  (`"." "period")
-                  (`"," "comma")
-                  (`":" "colon")
-                  (`";" "semicolon")
-                  ;; xrdb occur warning if it uses "'" as xresource
-                  ;; configuration, so this conversion has to do.
-                  (`"'" "apostrophe"))
+             ;; xrdb occur warning if it uses "'" as xresource
+             ;; configuration, so this conversion has to do.
+             if (assoc-default c xterm-keybinder-keysym-list)
              collect (format fmt-ctrl it c) into C-keys
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
