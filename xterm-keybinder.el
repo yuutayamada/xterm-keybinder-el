@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2015  Yuta Yamada
 
-;; Author: Yuta Yamada <sleepboy.zzz@gmail.com>
+;; Author: Yuta Yamada <cokesboy"at"gmail.com>
 ;; Package-Requires: ((emacs "24.3") (cl-lib "0.5"))
 ;; Version: 0.1.0
 ;; Keywords: Convenient
