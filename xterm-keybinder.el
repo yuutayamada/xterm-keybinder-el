@@ -69,7 +69,7 @@ This configuration is only used at when you make xterm's key bind option by
 ;; Is there other document? I seem 1998 is too old...
 (defconst xterm-keybinder-private-char #x3d)
 (defconst xterm-keybinder-prefix
-  (concat xterm-keybinder-CSI (format "%c" xterm-keybinder-private-char)))
+  (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
 (defconst xterm-keybinder-format
   (format "  %%s <KeyPress> %%s: string(\"\\033[%c%%s\") %%s \\n\\"
           xterm-keybinder-private-char))
