@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# You can reproduce same below configuration by xterm-keybinder-insert
+# You can reproduce below configuration by xterm-keybinder-insert
 # function. See also xterm-keybinder-xterm-keybinds variable to change
 # default xterm's functions.
 
