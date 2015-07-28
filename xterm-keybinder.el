@@ -75,6 +75,10 @@ This configuration is only used at when you make xterm's key bind option by
           xterm-keybinder-private-char))
 (defconst xterm-keybinder-C-char-list
   '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
+(defconst xterm-keybinder-table
+  '((C-S   . "")
+    (C-M   . "===")
+    (C-M-S . "=")))
 
 ;; based on XTerm's keysym.map
 (defconst xterm-keybinder-keysym-list
@@ -120,20 +124,25 @@ This configuration is only used at when you make xterm's key bind option by
   "Enable Emacs keybinds even in the xterm terminal Emacs."
   (interactive)
   (let ((prefix xterm-keybinder-prefix)
-        (map input-decode-map))
+        (map input-decode-map)
+        (cs  (assoc-default 'C-S   xterm-keybinder-table))
+        (cm  (assoc-default 'C-M   xterm-keybinder-table))
+        (cms (assoc-default 'C-M-S xterm-keybinder-table)))
     ;; C-S-[a-z], C-M-[a-z] and C-M-S-[a-z]
-    (cl-loop for c from ?a to ?z
-             for char = (char-to-string c)
+    (cl-loop with defkey = (lambda (props)
+                             (cl-loop for (mod c key) in props do
+                                      (define-key map (format "%s%s%c" prefix mod c) key)))
+             for c from ?\s to ?~
+             for char = "SPC" then (char-to-string c)
              for C-S-key   = (kbd (concat "C-S-"   char))
              for C-M-key   = (kbd (concat "C-M-"   char))
              for C-M-S-key = (kbd (concat "C-M-S-" char))
-             do (define-key map (concat prefix (capitalize char)) C-S-key)
-             do (define-key map (concat prefix char) C-M-key)
-             do (define-key map (concat prefix "=" char) C-M-S-key))
-    ;; Treat irregular keybinds
-    (define-key map (concat prefix " ")  (kbd "C-S-SPC"))
-    (define-key map (concat prefix "=== ") (kbd "C-M-SPC"))
-    (define-key map (concat prefix "= ")   (kbd "C-M-S-SPC"))))
+             if (<= ?A c ?Z) do
+             (funcall defkey `((,cs ,c ,C-S-key) (,cms ,c ,C-M-S-key)))
+             else if (<= ?a c ?z) do
+             (funcall defkey `((,cm ,c ,C-M-key)))
+             else if (eq c ?\s) do ; for space
+             (funcall defkey `((,cs ,c ,C-S-key) (,cm ,c ,C-M-key) (,cms ,c ,C-M-S-key))))))
 
 (defun xterm-keybinder-insert ()
   "Insert configuration for XTerm.
@@ -167,22 +176,19 @@ You can use this to insert xterm configuration by yourself."
              (push (xterm-keybinder-make-format 'C-M char char) cm)
              else if (<= ?A c ?Z) do
              (push (xterm-keybinder-make-format 'C-S char char) cs)
-             (push (xterm-keybinder-make-format 'C-M-S char (concat "=" char)) cms)
+             (push (xterm-keybinder-make-format 'C-M-S char char) cms)
              else if (eq c ?\s) do
              (push (xterm-keybinder-make-format 'C-S char " ") cs)
-             (push (xterm-keybinder-make-format 'C-M-S char "= ") cms)
+             (push (xterm-keybinder-make-format 'C-M-S char " ") cms)
+             (push (xterm-keybinder-make-format 'C-M char " ") cm)
              unless (<= ?A c ?Z) do
              (push (format fmt-super char c) super)
              (push (format fmt-hyper char c) hyper)
              finally (funcall ins (reverse (append hyper super cms cm cs))))
-    ;; Space
+    ;; Shift Space
     (let* ((last (format (xterm-keybinder-get-modifier-event 'shift)
-                         "space" ?\s))
-           (spc (funcall ins
-                         (list (xterm-keybinder-make-format 'C-M "space" "=== ")
-                               (substring last 0 (- (length last) 4)))
-                         "")))
-      (insert spc))))
+                         "space" ?\s)))
+      (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
 (defun xterm-keybinder-convert (str)
   "Convert STR to list of Hex expression for xterm configuration."
@@ -197,8 +203,11 @@ You can use this to insert xterm configuration by yourself."
              (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
              (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
              (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")))
+        (group (assoc-default prefix xterm-keybinder-table))
         (s (if c3 (xterm-keybinder-convert c3) "")))
-    (format xterm-keybinder-format p c1 c2 s)))
+    (format xterm-keybinder-format p c1
+            (concat group c2)
+            s)))
 
 (defun xterm-keybinder-get-modifier-event (sym)
   ;; See also ‘event-apply-XXX-modifier’
