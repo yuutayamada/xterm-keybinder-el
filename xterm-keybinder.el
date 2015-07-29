@@ -102,8 +102,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
 (defconst xterm-keybinder-prefix
   (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
 (defconst xterm-keybinder-format
-  (format "  %%s <KeyPress> %%s: string(\"\\033[%c%%s\") %%s \\n\\"
-          xterm-keybinder-private-char))
+  (format "string(\"\\033[%c%%s\")" xterm-keybinder-private-char))
 (defconst xterm-keybinder-C-char-list
   '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
 (defconst xterm-keybinder-table
@@ -279,8 +278,7 @@ You can use this to insert xterm configuration by yourself."
                                               (super "0x73")
                                               (hyper "0x68"))))
               ;; \033[=
-              (format "string(\"\\033[%c%s\")"
-                      xterm-keybinder-private-char
+              (format xterm-keybinder-format
                       (assoc-default sym xterm-keybinder-table))))))
 
 ;; For debug
