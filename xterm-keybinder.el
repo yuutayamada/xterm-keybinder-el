@@ -110,6 +110,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
   '((C-S   . "")
     (C-M   . "===")
     (C-M-S . "=")
+    (M-S   . "==")
     (s-S   . "====")
     (H-S   . "=====")))
 
@@ -161,6 +162,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
         (cs  (assoc-default 'C-S   xterm-keybinder-table))
         (cm  (assoc-default 'C-M   xterm-keybinder-table))
         (cms (assoc-default 'C-M-S xterm-keybinder-table))
+        (ms  (assoc-default 'M-S   xterm-keybinder-table))
         (sS  (assoc-default 's-S   xterm-keybinder-table))
         (hS  (assoc-default 'H-S   xterm-keybinder-table)))
     ;; C-S-[a-z], C-M-[a-z] and C-M-S-[a-z]
@@ -172,11 +174,12 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
              for C-S-key   = (kbd (concat "C-S-"   char))
              for C-M-key   = (kbd (concat "C-M-"   char))
              for C-M-S-key = (kbd (concat "C-M-S-" char))
+             for M-S-key   = (kbd (concat "M-S-"   char))
              for s-S-key   = (kbd (concat "s-S-"   char))
              for H-S-key   = (kbd (concat "H-S-"   char))
              if (eq c ?=) do '() ; just ignore
              else if (<= ?A c ?Z) do
-             (funcall defkey `((,cs ,c ,C-S-key) (,cms ,c ,C-M-S-key)
+             (funcall defkey `((,cs ,c ,C-S-key) (,cms ,c ,C-M-S-key) (,ms ,c ,M-S-key)
                                (,sS ,c ,s-S-key) (,hS ,c ,H-S-key)))
              else if (<= ?a c ?z) do
              (funcall defkey `((,cm ,c ,C-M-key)))
@@ -207,10 +210,11 @@ You can use this to insert xterm configuration by yourself."
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
     ;; Control, Alt, Shift
-    (cl-loop with cs and cm and cms
+    (cl-loop with cs and cm and cms and ms
              with fmt-C-S   = (xterm-keybinder-make-base-format 'C-S)
              with fmt-C-M   = (xterm-keybinder-make-base-format 'C-M)
              with fmt-C-M-S = (xterm-keybinder-make-base-format 'C-M-S)
+             with fmt-M-S   = (xterm-keybinder-make-base-format 'M-S)
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
@@ -219,11 +223,12 @@ You can use this to insert xterm configuration by yourself."
              else if (<= ?A c ?Z) do
              (push (format fmt-C-S char c) cs)
              (push (format fmt-C-M-S char c) cms)
+             (push (format fmt-M-S char c) ms)
              else if (eq c ?\s) do
              (push (format fmt-C-S char c) cs)
              (push (format fmt-C-M-S char c) cms)
              (push (format fmt-C-M char c) cm)
-             finally (funcall ins (reverse (append cms cm cs))))
+             finally (funcall ins (reverse (append ms cms cm cs))))
     ;; Super and Hyper
     (cl-loop with super and hyper
              with fmt-s   = (xterm-keybinder-make-base-format 'super)
@@ -262,6 +267,7 @@ You can use this to insert xterm configuration by yourself."
               (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
               (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
               (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")
+              (M-S   "Alt Shift ~Ctrl ~Super ~Hyper")
               (s-S   "Super %s~Alt ~Ctrl ~Hyper")
               (H-S   "Hyper %s~Alt ~Ctrl ~Super"))
             (if (member sym '(shift ctrl super hyper))

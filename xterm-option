@@ -104,6 +104,32 @@
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> X: string("\033[==") string(0x58) \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> Y: string("\033[==") string(0x59) \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> Z: string("\033[==") string(0x5a) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> A: string("\033[===") string(0x41) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> B: string("\033[===") string(0x42) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> C: string("\033[===") string(0x43) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> D: string("\033[===") string(0x44) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> E: string("\033[===") string(0x45) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> F: string("\033[===") string(0x46) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> G: string("\033[===") string(0x47) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> H: string("\033[===") string(0x48) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> I: string("\033[===") string(0x49) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> J: string("\033[===") string(0x4a) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> K: string("\033[===") string(0x4b) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> L: string("\033[===") string(0x4c) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> M: string("\033[===") string(0x4d) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> N: string("\033[===") string(0x4e) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> O: string("\033[===") string(0x4f) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> P: string("\033[===") string(0x50) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> Q: string("\033[===") string(0x51) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> R: string("\033[===") string(0x52) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> S: string("\033[===") string(0x53) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> T: string("\033[===") string(0x54) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> U: string("\033[===") string(0x55) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> V: string("\033[===") string(0x56) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> W: string("\033[===") string(0x57) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> X: string("\033[===") string(0x58) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> Y: string("\033[===") string(0x59) \n\
+  Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> Z: string("\033[===") string(0x5a) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x73) string(0x20) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> grave: string(0x18) string(0x40) string(0x73) string(0x60) \n\
   Super ~Alt ~Ctrl ~Hyper <KeyPress> asciitilde: string("\033[=====") string(0x7e) \n\
