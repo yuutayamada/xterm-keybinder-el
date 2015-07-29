@@ -197,7 +197,7 @@ You can use this to insert xterm configuration by yourself."
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
                            xterm-keybinder-xterm-keybinds)))
     ;; Control keybinds
-    (cl-loop with fmt-ctrl = (xterm-keybinder-get-modifier-event 'ctrl)
+    (cl-loop with fmt-ctrl = (xterm-keybinder-make-base-format 'ctrl)
              for char in xterm-keybinder-C-char-list
              for c = (string-to-char char)
              ;; xrdb occur warning if it uses "'" as xresource
@@ -208,9 +208,9 @@ You can use this to insert xterm configuration by yourself."
              finally (funcall ins C-keys))
     ;; Control, Alt, Shift
     (cl-loop with cs and cm and cms
-             with fmt-C-S   = (xterm-keybinder-get-modifier-event 'C-S)
-             with fmt-C-M   = (xterm-keybinder-get-modifier-event 'C-M)
-             with fmt-C-M-S = (xterm-keybinder-get-modifier-event 'C-M-S)
+             with fmt-C-S   = (xterm-keybinder-make-base-format 'C-S)
+             with fmt-C-M   = (xterm-keybinder-make-base-format 'C-M)
+             with fmt-C-M-S = (xterm-keybinder-make-base-format 'C-M-S)
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
@@ -226,10 +226,10 @@ You can use this to insert xterm configuration by yourself."
              finally (funcall ins (reverse (append cms cm cs))))
     ;; Super and Hyper
     (cl-loop with super and hyper
-             with fmt-s   = (xterm-keybinder-get-modifier-event 'super)
-             with fmt-s-S = (xterm-keybinder-get-modifier-event 's-S)
-             with fmt-H   = (xterm-keybinder-get-modifier-event 'hyper)
-             with fmt-H-S = (xterm-keybinder-get-modifier-event 'H-S)
+             with fmt-s   = (xterm-keybinder-make-base-format 'super)
+             with fmt-s-S = (xterm-keybinder-make-base-format 's-S)
+             with fmt-H   = (xterm-keybinder-make-base-format 'hyper)
+             with fmt-H-S = (xterm-keybinder-make-base-format 'H-S)
              for (c . C) in xterm-keybinder-key-pairs
              ;; normal char
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
@@ -246,7 +246,7 @@ You can use this to insert xterm configuration by yourself."
                (push (format fmt-H-S Shift Char C) hyper))
              finally (funcall ins (reverse (append hyper super))))
     ;; Shift Space
-    (let* ((last (format (xterm-keybinder-get-modifier-event 'shift)
+    (let* ((last (format (xterm-keybinder-make-base-format 'shift)
                          "space" ?\s)))
       (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
@@ -257,7 +257,7 @@ You can use this to insert xterm configuration by yourself."
            collect (format "string(0x%x)" char) into chars
            finally return (mapconcat 'identity chars "")))
 
-(defun xterm-keybinder-get-modifier-event (sym)
+(defun xterm-keybinder-make-base-format (sym)
   ;; See also ‘event-apply-XXX-modifier’
   (let ((C-x@ "string(0x18) string(0x40) "))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
