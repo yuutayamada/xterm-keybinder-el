@@ -1,4 +1,4 @@
-;;; xterm-keybinder.el --- Let your terminal emacs to control keybinds in xterm -*- lexical-binding: t; -*-
+;;; xterm-keybinder.el --- Let you keybinds in xterm -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2015  Yuta Yamada
 
@@ -21,8 +21,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; This package let your terminal Emacs C-[;:',.0-9]-keys,
-;; C-S-[a-z]-keys, C-M-[a-z]-keys and C-M-S-[a-z]-keys on xterm.
+;; This package lets you key binds that normally terminal Emacs can not use in XTerm.
+;; (i.e., C-M-g)
 ;;
 ;; Usage:
 ;; Put below configuration to your .emacs
@@ -50,7 +50,6 @@
 ;;   XTerm*vt100.formatOtherKeys: 1
 ;; -- end of configuration
 ;;
-;; See also: https://github.com/yuutayamada/xterm-keybinder-el/blob/master/README.md
 ;;; Code:
 
 (require 'cl-lib)

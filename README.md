@@ -1,7 +1,8 @@
 # xterm-keybinder
 
-This package let your terminal Emacs C-[;:',.0-9]-keys,
-C-S-[a-z]-keys, C-M-[a-z]-keys and C-M-S-[a-z]-keys in xterm.
+This package lets you key binds that normally terminal Emacs can not use.
+(i.e., C-M-g)
+
 
 ## Usage
 
