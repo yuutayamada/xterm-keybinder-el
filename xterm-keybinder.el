@@ -62,6 +62,37 @@
 This configuration is only used at when you make xterm's key bind option by
 ‘xterm-keybinder-insert’.  By default, use C-+ and C-- to change font size.")
 
+(defvar xterm-keybinder-key-pairs
+  (append
+   '((?\s . nil)
+     (?`  . ?~)
+     (?-  . ?_)
+     (?=  . ?+)
+     (?\[ . ?\{)
+     (?\] . ?\})
+     (?\\ . ?|)
+     (?\; . ?:)
+     (?\' . ?\")
+     (?,  . ?<)
+     (?.  . ?>)
+     (?/  . ?\?)
+     (?0  . ?\))
+     (?1  . ?!)
+     (?2  . ?@)
+     (?3  . ?#)
+     (?4  . ?$)
+     (?5  . ?%)
+     (?6  . ?^)
+     (?7  . ?&)
+     (?8  . ?*)
+     (?9  . ?\())
+   ;; pair of ([a-z] . [A-Z])
+   (cl-loop for c from ?a to ?z
+            for C = (string-to-char (capitalize (string c)))
+            collect (cons c C)))
+  "List of cons (no-shifted-char . shifted-char).
+Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.")
+
 (defconst xterm-keybinder-CSI "\033[") ; this means M-[ or ESC [
 ;; Use private key sequence of CSI
 ;; Private keys: #x3c, #x3d, #x3e, or #x3f.
@@ -78,7 +109,9 @@ This configuration is only used at when you make xterm's key bind option by
 (defconst xterm-keybinder-table
   '((C-S   . "")
     (C-M   . "===")
-    (C-M-S . "=")))
+    (C-M-S . "=")
+    (s-S   . "====")
+    (H-S   . "=====")))
 
 ;; based on XTerm's keysym.map
 (defconst xterm-keybinder-keysym-list
@@ -127,22 +160,30 @@ This configuration is only used at when you make xterm's key bind option by
         (map input-decode-map)
         (cs  (assoc-default 'C-S   xterm-keybinder-table))
         (cm  (assoc-default 'C-M   xterm-keybinder-table))
-        (cms (assoc-default 'C-M-S xterm-keybinder-table)))
+        (cms (assoc-default 'C-M-S xterm-keybinder-table))
+        (sS  (assoc-default 's-S   xterm-keybinder-table))
+        (hS  (assoc-default 'H-S   xterm-keybinder-table)))
     ;; C-S-[a-z], C-M-[a-z] and C-M-S-[a-z]
     (cl-loop with defkey = (lambda (props)
                              (cl-loop for (mod c key) in props do
                                       (define-key map (format "%s%s%c" prefix mod c) key)))
              for c from ?\s to ?~
-             for char = "SPC" then (char-to-string c)
+             for char = "SPC" then (downcase (char-to-string c))
              for C-S-key   = (kbd (concat "C-S-"   char))
              for C-M-key   = (kbd (concat "C-M-"   char))
              for C-M-S-key = (kbd (concat "C-M-S-" char))
-             if (<= ?A c ?Z) do
-             (funcall defkey `((,cs ,c ,C-S-key) (,cms ,c ,C-M-S-key)))
+             for s-S-key   = (kbd (concat "s-S-"   char))
+             for H-S-key   = (kbd (concat "H-S-"   char))
+             if (eq c ?=) do '() ; just ignore
+             else if (<= ?A c ?Z) do
+             (funcall defkey `((,cs ,c ,C-S-key) (,cms ,c ,C-M-S-key)
+                               (,sS ,c ,s-S-key) (,hS ,c ,H-S-key)))
              else if (<= ?a c ?z) do
              (funcall defkey `((,cm ,c ,C-M-key)))
              else if (eq c ?\s) do ; for space
-             (funcall defkey `((,cs ,c ,C-S-key) (,cm ,c ,C-M-key) (,cms ,c ,C-M-S-key))))))
+             (funcall defkey `((,cs ,c ,C-S-key) (,cm ,c ,C-M-key) (,cms ,c ,C-M-S-key)))
+             else
+             do (funcall defkey `((,hS ,c ,H-S-key) (,sS ,c ,s-S-key))))))
 
 (defun xterm-keybinder-insert ()
   "Insert configuration for XTerm.
@@ -165,10 +206,8 @@ You can use this to insert xterm configuration by yourself."
              collect (format fmt-ctrl it c) into C-keys
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
-    ;; Control, Alt, Shift, Super and Hyper
-    (cl-loop with cs and cm and cms and super and hyper
-             with fmt-super = (xterm-keybinder-get-modifier-event 'super)
-             with fmt-hyper = (xterm-keybinder-get-modifier-event 'hyper)
+    ;; Control, Alt, Shift
+    (cl-loop with cs and cm and cms
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
@@ -181,10 +220,28 @@ You can use this to insert xterm configuration by yourself."
              (push (xterm-keybinder-make-format 'C-S char " ") cs)
              (push (xterm-keybinder-make-format 'C-M-S char " ") cms)
              (push (xterm-keybinder-make-format 'C-M char " ") cm)
-             unless (<= ?A c ?Z) do
-             (push (format fmt-super char c) super)
-             (push (format fmt-hyper char c) hyper)
-             finally (funcall ins (reverse (append hyper super cms cm cs))))
+             finally (funcall ins (reverse (append cms cm cs))))
+    ;; Super and Hyper
+    (cl-loop with super and hyper
+             with fmt-s   = (xterm-keybinder-get-modifier-event 'super)
+             with fmt-s-S = (xterm-keybinder-get-modifier-event 's-S)
+             with fmt-H   = (xterm-keybinder-get-modifier-event 'hyper)
+             with fmt-H-S = (xterm-keybinder-get-modifier-event 'H-S)
+             for (c . C) in xterm-keybinder-key-pairs
+             ;; normal char
+             for char = (or (assoc-default c xterm-keybinder-keysym-list)
+                            (char-to-string c))
+             ;; capitalized char
+             for Char = (and C
+                             (or (assoc-default C xterm-keybinder-keysym-list)
+                                 (char-to-string C)))
+             do (progn (push (format fmt-s char c) super)
+                       (push (format fmt-H char c) hyper))
+             if C do
+             (let ((Shift (if (<= ?A C ?Z) "Shift " "")))
+               (push (format fmt-s-S Shift Char C) super)
+               (push (format fmt-H-S Shift Char C) hyper))
+             finally (funcall ins (reverse (append hyper super))))
     ;; Shift Space
     (let* ((last (format (xterm-keybinder-get-modifier-event 'shift)
                          "space" ?\s)))
@@ -217,13 +274,22 @@ You can use this to insert xterm configuration by yourself."
               (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
               (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
-              (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super"))
-            (format "%s%s" C-x@ (format "string(%s)"
-                                        (cl-case sym
-                                          (shift "0x53")
-                                          (ctrl  "0x63")
-                                          (super "0x73")
-                                          (hyper "0x68")))))))
+              (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super")
+              (s-S   "Super %s~Alt ~Ctrl ~Hyper")
+              (H-S   "Hyper %s~Alt ~Ctrl ~Super"))
+            (if (member sym '(shift ctrl super hyper))
+                ;; event modifier
+                (format "%s%s" C-x@ (format "string(%s)"
+                                            (cl-case sym
+                                              (shift "0x53")
+                                              (ctrl  "0x63")
+                                              (super "0x73")
+                                              (hyper "0x68"))))
+              ;; \033[=
+              (format "string(\"\\033[%c%s\")"
+                      xterm-keybinder-private-char
+                      (assoc-default sym xterm-keybinder-table))))))
+
 
 (provide 'xterm-keybinder)
 ;;; xterm-keybinder.el ends here
