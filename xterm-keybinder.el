@@ -250,13 +250,6 @@ You can use this to insert xterm configuration by yourself."
                          "space" ?\s)))
       (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
-(defun xterm-keybinder-convert (str)
-  "Convert STR to list of Hex expression for xterm configuration."
-  (cl-loop for c in (delq "" (split-string str ""))
-           for char = (string-to-char c)
-           collect (format "string(0x%x)" char) into chars
-           finally return (mapconcat 'identity chars "")))
-
 (defun xterm-keybinder-make-base-format (sym)
   ;; See also ‘event-apply-XXX-modifier’
   (let ((C-x@ "string(0x18) string(0x40) "))
