@@ -23,33 +23,33 @@
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 7: string(0x18) string(0x40) string(0x63) string(0x37) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 8: string(0x18) string(0x40) string(0x63) string(0x38) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 9: string(0x18) string(0x40) string(0x63) string(0x39) \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> space: string("\033[= ")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> A: string("\033[=A")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> B: string("\033[=B")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> C: string("\033[=C")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> D: string("\033[=D")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> E: string("\033[=E")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> F: string("\033[=F")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> G: string("\033[=G")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> H: string("\033[=H")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> I: string("\033[=I")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> J: string("\033[=J")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> K: string("\033[=K")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> L: string("\033[=L")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> M: string("\033[=M")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> N: string("\033[=N")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> O: string("\033[=O")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> P: string("\033[=P")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> Q: string("\033[=Q")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> R: string("\033[=R")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> S: string("\033[=S")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> T: string("\033[=T")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> U: string("\033[=U")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> V: string("\033[=V")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> W: string("\033[=W")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> X: string("\033[=X")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> Y: string("\033[=Y")  \n\
-  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> Z: string("\033[=Z")  \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> space: string("\033[=") string(0x20) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> A: string("\033[=") string(0x41) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> B: string("\033[=") string(0x42) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> C: string("\033[=") string(0x43) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> D: string("\033[=") string(0x44) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> E: string("\033[=") string(0x45) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> F: string("\033[=") string(0x46) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> G: string("\033[=") string(0x47) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> H: string("\033[=") string(0x48) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> I: string("\033[=") string(0x49) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> J: string("\033[=") string(0x4a) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> K: string("\033[=") string(0x4b) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> L: string("\033[=") string(0x4c) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> M: string("\033[=") string(0x4d) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> N: string("\033[=") string(0x4e) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> O: string("\033[=") string(0x4f) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> P: string("\033[=") string(0x50) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> Q: string("\033[=") string(0x51) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> R: string("\033[=") string(0x52) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> S: string("\033[=") string(0x53) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> T: string("\033[=") string(0x54) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> U: string("\033[=") string(0x55) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> V: string("\033[=") string(0x56) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> W: string("\033[=") string(0x57) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> X: string("\033[=") string(0x58) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> Y: string("\033[=") string(0x59) \n\
+  Ctrl Shift  ~Alt ~Super ~Hyper <KeyPress> Z: string("\033[=") string(0x5a) \n\
   Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> space: string("\033[==== ")  \n\
   Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> a: string("\033[====a")  \n\
   Ctrl Alt ~Shift  ~Super ~Hyper <KeyPress> b: string("\033[====b")  \n\

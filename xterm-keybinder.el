@@ -208,16 +208,17 @@ You can use this to insert xterm configuration by yourself."
              finally (funcall ins C-keys))
     ;; Control, Alt, Shift
     (cl-loop with cs and cm and cms
+             with fmt-C-S = (xterm-keybinder-get-modifier-event 'C-S)
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
              if (<= ?a c ?z) do
              (push (xterm-keybinder-make-format 'C-M char char) cm)
              else if (<= ?A c ?Z) do
-             (push (xterm-keybinder-make-format 'C-S char char) cs)
+             (push (format fmt-C-S char c) cs)
              (push (xterm-keybinder-make-format 'C-M-S char char) cms)
              else if (eq c ?\s) do
-             (push (xterm-keybinder-make-format 'C-S char " ") cs)
+             (push (format fmt-C-S char c) cs)
              (push (xterm-keybinder-make-format 'C-M-S char " ") cms)
              (push (xterm-keybinder-make-format 'C-M char " ") cm)
              finally (funcall ins (reverse (append cms cm cs))))
@@ -257,7 +258,6 @@ You can use this to insert xterm configuration by yourself."
 (defun xterm-keybinder-make-format (prefix c1 c2 &optional c3)
   "Make adapt format string from PREFIX, C1, and C2."
   (let ((p (cl-case prefix
-             (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
              (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
              (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")))
         (group (assoc-default prefix xterm-keybinder-table))
@@ -275,6 +275,7 @@ You can use this to insert xterm configuration by yourself."
               (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
               (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super")
+              (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
               (s-S   "Super %s~Alt ~Ctrl ~Hyper")
               (H-S   "Hyper %s~Alt ~Ctrl ~Super"))
             (if (member sym '(shift ctrl super hyper))
