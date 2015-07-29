@@ -1,4 +1,4 @@
-;;; xterm-keybinder.el --- Let you keybinds in xterm -*- lexical-binding: t; -*-
+;;; xterm-keybinder.el --- Let you extra keybinds in xterm -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2015  Yuta Yamada
 
