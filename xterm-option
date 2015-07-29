@@ -105,142 +105,194 @@
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> Y: string("\033[==Y")  \n\
   Ctrl Alt  Shift  ~Super ~Hyper <KeyPress> Z: string("\033[==Z")  \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x73) string(0x20) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> exclam: string(0x18) string(0x40) string(0x73) string(0x21) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> quotedbl: string(0x18) string(0x40) string(0x73) string(0x22) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> numbersign: string(0x18) string(0x40) string(0x73) string(0x23) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> dollar: string(0x18) string(0x40) string(0x73) string(0x24) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> percent: string(0x18) string(0x40) string(0x73) string(0x25) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> ampersand: string(0x18) string(0x40) string(0x73) string(0x26) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> apostrophe: string(0x18) string(0x40) string(0x73) string(0x27) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> parenleft: string(0x18) string(0x40) string(0x73) string(0x28) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> parenright: string(0x18) string(0x40) string(0x73) string(0x29) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> asterisk: string(0x18) string(0x40) string(0x73) string(0x2a) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> plus: string(0x18) string(0x40) string(0x73) string(0x2b) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> comma: string(0x18) string(0x40) string(0x73) string(0x2c) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> minus: string(0x18) string(0x40) string(0x73) string(0x2d) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> period: string(0x18) string(0x40) string(0x73) string(0x2e) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> slash: string(0x18) string(0x40) string(0x73) string(0x2f) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 0: string(0x18) string(0x40) string(0x73) string(0x30) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 1: string(0x18) string(0x40) string(0x73) string(0x31) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 2: string(0x18) string(0x40) string(0x73) string(0x32) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 3: string(0x18) string(0x40) string(0x73) string(0x33) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 4: string(0x18) string(0x40) string(0x73) string(0x34) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 5: string(0x18) string(0x40) string(0x73) string(0x35) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 6: string(0x18) string(0x40) string(0x73) string(0x36) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 7: string(0x18) string(0x40) string(0x73) string(0x37) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 8: string(0x18) string(0x40) string(0x73) string(0x38) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 9: string(0x18) string(0x40) string(0x73) string(0x39) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> colon: string(0x18) string(0x40) string(0x73) string(0x3a) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> semicolon: string(0x18) string(0x40) string(0x73) string(0x3b) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> less: string(0x18) string(0x40) string(0x73) string(0x3c) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> equal: string(0x18) string(0x40) string(0x73) string(0x3d) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> greater: string(0x18) string(0x40) string(0x73) string(0x3e) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> question: string(0x18) string(0x40) string(0x73) string(0x3f) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> at: string(0x18) string(0x40) string(0x73) string(0x40) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> bracketleft: string(0x18) string(0x40) string(0x73) string(0x5b) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> backslash: string(0x18) string(0x40) string(0x73) string(0x5c) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> bracketright: string(0x18) string(0x40) string(0x73) string(0x5d) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> asciicircum: string(0x18) string(0x40) string(0x73) string(0x5e) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> underscore: string(0x18) string(0x40) string(0x73) string(0x5f) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> grave: string(0x18) string(0x40) string(0x73) string(0x60) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> asciitilde: string("\033[=====") string(0x7e) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> minus: string(0x18) string(0x40) string(0x73) string(0x2d) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> underscore: string("\033[=====") string(0x5f) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> equal: string(0x18) string(0x40) string(0x73) string(0x3d) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> plus: string("\033[=====") string(0x2b) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> bracketleft: string(0x18) string(0x40) string(0x73) string(0x5b) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> braceleft: string("\033[=====") string(0x7b) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> bracketright: string(0x18) string(0x40) string(0x73) string(0x5d) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> braceright: string("\033[=====") string(0x7d) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> backslash: string(0x18) string(0x40) string(0x73) string(0x5c) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> bar: string("\033[=====") string(0x7c) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> semicolon: string(0x18) string(0x40) string(0x73) string(0x3b) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> colon: string("\033[=====") string(0x3a) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> apostrophe: string(0x18) string(0x40) string(0x73) string(0x27) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> quotedbl: string("\033[=====") string(0x22) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> comma: string(0x18) string(0x40) string(0x73) string(0x2c) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> less: string("\033[=====") string(0x3c) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> period: string(0x18) string(0x40) string(0x73) string(0x2e) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> greater: string("\033[=====") string(0x3e) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> slash: string(0x18) string(0x40) string(0x73) string(0x2f) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> question: string("\033[=====") string(0x3f) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 0: string(0x18) string(0x40) string(0x73) string(0x30) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> parenright: string("\033[=====") string(0x29) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 1: string(0x18) string(0x40) string(0x73) string(0x31) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> exclam: string("\033[=====") string(0x21) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 2: string(0x18) string(0x40) string(0x73) string(0x32) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> at: string("\033[=====") string(0x40) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 3: string(0x18) string(0x40) string(0x73) string(0x33) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> numbersign: string("\033[=====") string(0x23) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 4: string(0x18) string(0x40) string(0x73) string(0x34) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> dollar: string("\033[=====") string(0x24) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 5: string(0x18) string(0x40) string(0x73) string(0x35) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> percent: string("\033[=====") string(0x25) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 6: string(0x18) string(0x40) string(0x73) string(0x36) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> asciicircum: string("\033[=====") string(0x5e) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 7: string(0x18) string(0x40) string(0x73) string(0x37) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> ampersand: string("\033[=====") string(0x26) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 8: string(0x18) string(0x40) string(0x73) string(0x38) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> asterisk: string("\033[=====") string(0x2a) \n\
+  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> 9: string(0x18) string(0x40) string(0x73) string(0x39) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> parenleft: string("\033[=====") string(0x28) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> a: string(0x18) string(0x40) string(0x73) string(0x61) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> A: string("\033[=====") string(0x41) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> b: string(0x18) string(0x40) string(0x73) string(0x62) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> B: string("\033[=====") string(0x42) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> c: string(0x18) string(0x40) string(0x73) string(0x63) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> C: string("\033[=====") string(0x43) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> d: string(0x18) string(0x40) string(0x73) string(0x64) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> D: string("\033[=====") string(0x44) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> e: string(0x18) string(0x40) string(0x73) string(0x65) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> E: string("\033[=====") string(0x45) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> f: string(0x18) string(0x40) string(0x73) string(0x66) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> F: string("\033[=====") string(0x46) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> g: string(0x18) string(0x40) string(0x73) string(0x67) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> G: string("\033[=====") string(0x47) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> h: string(0x18) string(0x40) string(0x73) string(0x68) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> H: string("\033[=====") string(0x48) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> i: string(0x18) string(0x40) string(0x73) string(0x69) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> I: string("\033[=====") string(0x49) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> j: string(0x18) string(0x40) string(0x73) string(0x6a) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> J: string("\033[=====") string(0x4a) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> k: string(0x18) string(0x40) string(0x73) string(0x6b) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> K: string("\033[=====") string(0x4b) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> l: string(0x18) string(0x40) string(0x73) string(0x6c) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> L: string("\033[=====") string(0x4c) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> m: string(0x18) string(0x40) string(0x73) string(0x6d) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> M: string("\033[=====") string(0x4d) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> n: string(0x18) string(0x40) string(0x73) string(0x6e) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> N: string("\033[=====") string(0x4e) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> o: string(0x18) string(0x40) string(0x73) string(0x6f) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> O: string("\033[=====") string(0x4f) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> p: string(0x18) string(0x40) string(0x73) string(0x70) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> P: string("\033[=====") string(0x50) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> q: string(0x18) string(0x40) string(0x73) string(0x71) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> Q: string("\033[=====") string(0x51) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> r: string(0x18) string(0x40) string(0x73) string(0x72) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> R: string("\033[=====") string(0x52) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> s: string(0x18) string(0x40) string(0x73) string(0x73) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> S: string("\033[=====") string(0x53) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> t: string(0x18) string(0x40) string(0x73) string(0x74) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> T: string("\033[=====") string(0x54) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> u: string(0x18) string(0x40) string(0x73) string(0x75) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> U: string("\033[=====") string(0x55) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> v: string(0x18) string(0x40) string(0x73) string(0x76) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> V: string("\033[=====") string(0x56) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> w: string(0x18) string(0x40) string(0x73) string(0x77) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> W: string("\033[=====") string(0x57) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> x: string(0x18) string(0x40) string(0x73) string(0x78) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> X: string("\033[=====") string(0x58) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> y: string(0x18) string(0x40) string(0x73) string(0x79) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> Y: string("\033[=====") string(0x59) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> z: string(0x18) string(0x40) string(0x73) string(0x7a) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> braceleft: string(0x18) string(0x40) string(0x73) string(0x7b) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> bar: string(0x18) string(0x40) string(0x73) string(0x7c) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> braceright: string(0x18) string(0x40) string(0x73) string(0x7d) \n\
-  Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> asciitilde: string(0x18) string(0x40) string(0x73) string(0x7e) \n\
+  Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> Z: string("\033[=====") string(0x5a) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> space: string(0x18) string(0x40) string(0x68) string(0x20) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> exclam: string(0x18) string(0x40) string(0x68) string(0x21) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> quotedbl: string(0x18) string(0x40) string(0x68) string(0x22) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> numbersign: string(0x18) string(0x40) string(0x68) string(0x23) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> dollar: string(0x18) string(0x40) string(0x68) string(0x24) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> percent: string(0x18) string(0x40) string(0x68) string(0x25) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> ampersand: string(0x18) string(0x40) string(0x68) string(0x26) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> apostrophe: string(0x18) string(0x40) string(0x68) string(0x27) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> parenleft: string(0x18) string(0x40) string(0x68) string(0x28) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> parenright: string(0x18) string(0x40) string(0x68) string(0x29) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> asterisk: string(0x18) string(0x40) string(0x68) string(0x2a) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> plus: string(0x18) string(0x40) string(0x68) string(0x2b) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> comma: string(0x18) string(0x40) string(0x68) string(0x2c) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> minus: string(0x18) string(0x40) string(0x68) string(0x2d) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> period: string(0x18) string(0x40) string(0x68) string(0x2e) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> slash: string(0x18) string(0x40) string(0x68) string(0x2f) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 0: string(0x18) string(0x40) string(0x68) string(0x30) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 1: string(0x18) string(0x40) string(0x68) string(0x31) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 2: string(0x18) string(0x40) string(0x68) string(0x32) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 3: string(0x18) string(0x40) string(0x68) string(0x33) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 4: string(0x18) string(0x40) string(0x68) string(0x34) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 5: string(0x18) string(0x40) string(0x68) string(0x35) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 6: string(0x18) string(0x40) string(0x68) string(0x36) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 7: string(0x18) string(0x40) string(0x68) string(0x37) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 8: string(0x18) string(0x40) string(0x68) string(0x38) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 9: string(0x18) string(0x40) string(0x68) string(0x39) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> colon: string(0x18) string(0x40) string(0x68) string(0x3a) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> semicolon: string(0x18) string(0x40) string(0x68) string(0x3b) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> less: string(0x18) string(0x40) string(0x68) string(0x3c) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> equal: string(0x18) string(0x40) string(0x68) string(0x3d) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> greater: string(0x18) string(0x40) string(0x68) string(0x3e) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> question: string(0x18) string(0x40) string(0x68) string(0x3f) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> at: string(0x18) string(0x40) string(0x68) string(0x40) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> bracketleft: string(0x18) string(0x40) string(0x68) string(0x5b) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> backslash: string(0x18) string(0x40) string(0x68) string(0x5c) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> bracketright: string(0x18) string(0x40) string(0x68) string(0x5d) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> asciicircum: string(0x18) string(0x40) string(0x68) string(0x5e) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> underscore: string(0x18) string(0x40) string(0x68) string(0x5f) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> grave: string(0x18) string(0x40) string(0x68) string(0x60) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> asciitilde: string("\033[======") string(0x7e) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> minus: string(0x18) string(0x40) string(0x68) string(0x2d) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> underscore: string("\033[======") string(0x5f) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> equal: string(0x18) string(0x40) string(0x68) string(0x3d) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> plus: string("\033[======") string(0x2b) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> bracketleft: string(0x18) string(0x40) string(0x68) string(0x5b) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> braceleft: string("\033[======") string(0x7b) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> bracketright: string(0x18) string(0x40) string(0x68) string(0x5d) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> braceright: string("\033[======") string(0x7d) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> backslash: string(0x18) string(0x40) string(0x68) string(0x5c) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> bar: string("\033[======") string(0x7c) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> semicolon: string(0x18) string(0x40) string(0x68) string(0x3b) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> colon: string("\033[======") string(0x3a) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> apostrophe: string(0x18) string(0x40) string(0x68) string(0x27) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> quotedbl: string("\033[======") string(0x22) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> comma: string(0x18) string(0x40) string(0x68) string(0x2c) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> less: string("\033[======") string(0x3c) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> period: string(0x18) string(0x40) string(0x68) string(0x2e) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> greater: string("\033[======") string(0x3e) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> slash: string(0x18) string(0x40) string(0x68) string(0x2f) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> question: string("\033[======") string(0x3f) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 0: string(0x18) string(0x40) string(0x68) string(0x30) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> parenright: string("\033[======") string(0x29) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 1: string(0x18) string(0x40) string(0x68) string(0x31) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> exclam: string("\033[======") string(0x21) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 2: string(0x18) string(0x40) string(0x68) string(0x32) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> at: string("\033[======") string(0x40) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 3: string(0x18) string(0x40) string(0x68) string(0x33) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> numbersign: string("\033[======") string(0x23) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 4: string(0x18) string(0x40) string(0x68) string(0x34) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> dollar: string("\033[======") string(0x24) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 5: string(0x18) string(0x40) string(0x68) string(0x35) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> percent: string("\033[======") string(0x25) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 6: string(0x18) string(0x40) string(0x68) string(0x36) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> asciicircum: string("\033[======") string(0x5e) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 7: string(0x18) string(0x40) string(0x68) string(0x37) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> ampersand: string("\033[======") string(0x26) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 8: string(0x18) string(0x40) string(0x68) string(0x38) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> asterisk: string("\033[======") string(0x2a) \n\
+  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> 9: string(0x18) string(0x40) string(0x68) string(0x39) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> parenleft: string("\033[======") string(0x28) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> a: string(0x18) string(0x40) string(0x68) string(0x61) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> A: string("\033[======") string(0x41) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> b: string(0x18) string(0x40) string(0x68) string(0x62) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> B: string("\033[======") string(0x42) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> c: string(0x18) string(0x40) string(0x68) string(0x63) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> C: string("\033[======") string(0x43) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> d: string(0x18) string(0x40) string(0x68) string(0x64) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> D: string("\033[======") string(0x44) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> e: string(0x18) string(0x40) string(0x68) string(0x65) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> E: string("\033[======") string(0x45) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> f: string(0x18) string(0x40) string(0x68) string(0x66) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> F: string("\033[======") string(0x46) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> g: string(0x18) string(0x40) string(0x68) string(0x67) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> G: string("\033[======") string(0x47) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> h: string(0x18) string(0x40) string(0x68) string(0x68) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> H: string("\033[======") string(0x48) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> i: string(0x18) string(0x40) string(0x68) string(0x69) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> I: string("\033[======") string(0x49) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> j: string(0x18) string(0x40) string(0x68) string(0x6a) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> J: string("\033[======") string(0x4a) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> k: string(0x18) string(0x40) string(0x68) string(0x6b) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> K: string("\033[======") string(0x4b) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> l: string(0x18) string(0x40) string(0x68) string(0x6c) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> L: string("\033[======") string(0x4c) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> m: string(0x18) string(0x40) string(0x68) string(0x6d) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> M: string("\033[======") string(0x4d) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> n: string(0x18) string(0x40) string(0x68) string(0x6e) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> N: string("\033[======") string(0x4e) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> o: string(0x18) string(0x40) string(0x68) string(0x6f) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> O: string("\033[======") string(0x4f) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> p: string(0x18) string(0x40) string(0x68) string(0x70) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> P: string("\033[======") string(0x50) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> q: string(0x18) string(0x40) string(0x68) string(0x71) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> Q: string("\033[======") string(0x51) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> r: string(0x18) string(0x40) string(0x68) string(0x72) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> R: string("\033[======") string(0x52) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> s: string(0x18) string(0x40) string(0x68) string(0x73) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> S: string("\033[======") string(0x53) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> t: string(0x18) string(0x40) string(0x68) string(0x74) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> T: string("\033[======") string(0x54) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> u: string(0x18) string(0x40) string(0x68) string(0x75) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> U: string("\033[======") string(0x55) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> v: string(0x18) string(0x40) string(0x68) string(0x76) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> V: string("\033[======") string(0x56) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> w: string(0x18) string(0x40) string(0x68) string(0x77) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> W: string("\033[======") string(0x57) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> x: string(0x18) string(0x40) string(0x68) string(0x78) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> X: string("\033[======") string(0x58) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> y: string(0x18) string(0x40) string(0x68) string(0x79) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> Y: string("\033[======") string(0x59) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> z: string(0x18) string(0x40) string(0x68) string(0x7a) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> braceleft: string(0x18) string(0x40) string(0x68) string(0x7b) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> bar: string(0x18) string(0x40) string(0x68) string(0x7c) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> braceright: string(0x18) string(0x40) string(0x68) string(0x7d) \n\
-  Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> asciitilde: string(0x18) string(0x40) string(0x68) string(0x7e) \n\
+  Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> Z: string("\033[======") string(0x5a) \n\
   Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x53) string(0x20)'
 EOF
