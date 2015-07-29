@@ -284,6 +284,8 @@ You can use this to insert xterm configuration by yourself."
                       xterm-keybinder-private-char
                       (assoc-default sym xterm-keybinder-table))))))
 
+;; For debug
+;;  (message (key-description (read-key-sequence "input: ")))
 
 (provide 'xterm-keybinder)
 ;;; xterm-keybinder.el ends here
