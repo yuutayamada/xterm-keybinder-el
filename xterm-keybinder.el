@@ -211,14 +211,14 @@ You can use this to insert xterm configuration by yourself."
 
 (defun xterm-keybinder-get-modifier-event (sym)
   ;; See also ‘event-apply-XXX-modifier’
-  (let ((base "string(0x18) string(0x40) "))
+  (let ((C-x@ "string(0x18) string(0x40) "))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
             (cl-case sym
               (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
               (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
               (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super"))
-            (format "%s%s" base (format "string(%s)"
+            (format "%s%s" C-x@ (format "string(%s)"
                                         (cl-case sym
                                           (shift "0x53")
                                           (ctrl  "0x63")
