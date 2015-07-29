@@ -208,8 +208,9 @@ You can use this to insert xterm configuration by yourself."
              finally (funcall ins C-keys))
     ;; Control, Alt, Shift
     (cl-loop with cs and cm and cms
-             with fmt-C-S = (xterm-keybinder-get-modifier-event 'C-S)
-             with fmt-C-M = (xterm-keybinder-get-modifier-event 'C-M)
+             with fmt-C-S   = (xterm-keybinder-get-modifier-event 'C-S)
+             with fmt-C-M   = (xterm-keybinder-get-modifier-event 'C-M)
+             with fmt-C-M-S = (xterm-keybinder-get-modifier-event 'C-M-S)
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
@@ -217,10 +218,10 @@ You can use this to insert xterm configuration by yourself."
              (push (format fmt-C-M char c) cm)
              else if (<= ?A c ?Z) do
              (push (format fmt-C-S char c) cs)
-             (push (xterm-keybinder-make-format 'C-M-S char char) cms)
+             (push (format fmt-C-M-S char c) cms)
              else if (eq c ?\s) do
              (push (format fmt-C-S char c) cs)
-             (push (xterm-keybinder-make-format 'C-M-S char " ") cms)
+             (push (format fmt-C-M-S char c) cms)
              (push (format fmt-C-M char c) cm)
              finally (funcall ins (reverse (append cms cm cs))))
     ;; Super and Hyper
@@ -256,16 +257,6 @@ You can use this to insert xterm configuration by yourself."
            collect (format "string(0x%x)" char) into chars
            finally return (mapconcat 'identity chars "")))
 
-(defun xterm-keybinder-make-format (prefix c1 c2 &optional c3)
-  "Make adapt format string from PREFIX, C1, and C2."
-  (let ((p (cl-case prefix
-             (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")))
-        (group (assoc-default prefix xterm-keybinder-table))
-        (s (if c3 (xterm-keybinder-convert c3) "")))
-    (format xterm-keybinder-format p c1
-            (concat group c2)
-            s)))
-
 (defun xterm-keybinder-get-modifier-event (sym)
   ;; See also ‘event-apply-XXX-modifier’
   (let ((C-x@ "string(0x18) string(0x40) "))
@@ -277,6 +268,7 @@ You can use this to insert xterm configuration by yourself."
               (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super")
               (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
               (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
+              (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")
               (s-S   "Super %s~Alt ~Ctrl ~Hyper")
               (H-S   "Hyper %s~Alt ~Ctrl ~Super"))
             (if (member sym '(shift ctrl super hyper))
