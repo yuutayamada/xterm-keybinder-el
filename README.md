@@ -3,6 +3,18 @@
 This package lets you key binds that normally terminal Emacs can not use.
 (i.e., C-M-g)
 
+## Summary of available key binds
+
+| Modifiers  | Description                          |
+|:-----------|:-------------------------------------|
+| S          | space key with shift
+| C          | [:;,.'0-9]
+| C-S        | [A-Z]
+| C-M        | [a-z]
+| M-S        | [A-Z]
+| C-M-S      | [A-Z]
+| s or s-S   | from space to "~" (almost 8 bits characters without control sequences)
+| H or H-S   | same as s-S, but use Hyper modifier
 
 ## Usage
 
