@@ -113,20 +113,6 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
 ;; See also: http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf page 26
 ;; Is there other document? I seem 1998 is too old...
 (defconst xterm-keybinder-private-char #x3d)
-(defun xterm-keybinder-get-modifier (symbol)
-  "Return precise modifier string from SYMBOL."
-  (cl-case symbol
-    (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
-    (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
-    (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
-    (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super")
-    (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
-    (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
-    (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")
-    (M-S   "Alt Shift ~Ctrl ~Super ~Hyper")
-    (s-S   "Super %s~Alt ~Ctrl ~Hyper")
-    (H-S   "Hyper %s~Alt ~Ctrl ~Super")))
-
 (defconst xterm-keybinder-prefix
   (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
 (defconst xterm-keybinder-format
@@ -180,6 +166,20 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     (?\} . "braceright")
     (?~  . "asciitilde")))
 
+(defun xterm-keybinder-get-modifier (symbol)
+  "Return precise modifier string from SYMBOL."
+  (cl-case symbol
+    (S     "Shift ~Ctrl ~Alt ~Super ~Hyper") ; Shift
+    (C     "Ctrl ~Shift ~Alt ~Super ~Hyper") ; Control
+    (s     "Super ~Ctrl ~Alt ~Shift ~Hyper") ; Super
+    (H     "Hyper ~Ctrl ~Alt ~Shift ~Super") ; Hyper
+    (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
+    (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
+    (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")
+    (M-S   "Alt Shift ~Ctrl ~Super ~Hyper")
+    (s-S   "Super %s~Alt ~Ctrl ~Hyper")
+    (H-S   "Hyper %s~Alt ~Ctrl ~Super")))
+
 ;;;###autoload
 (defun xterm-keybinder-setup ()
   "Enable Emacs keybinds even in the xterm terminal Emacs."
@@ -227,7 +227,7 @@ You can use this to insert xterm configuration by yourself."
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
                            xterm-keybinder-xterm-keybinds)))
     ;; Control keybinds
-    (cl-loop with fmt-ctrl = (xterm-keybinder-make-base-format 'ctrl)
+    (cl-loop with fmt-ctrl = (xterm-keybinder-make-base-format 'C) ; control
              for char in xterm-keybinder-C-char-list
              for c = (string-to-char char)
              ;; xrdb occur warning if it uses "'" as xresource
@@ -258,9 +258,9 @@ You can use this to insert xterm configuration by yourself."
              finally (funcall ins (reverse (append ms cms cm cs))))
     ;; Super and Hyper
     (cl-loop with super and hyper
-             with fmt-s   = (xterm-keybinder-make-base-format 'super)
+             with fmt-s   = (xterm-keybinder-make-base-format 's)
              with fmt-s-S = (xterm-keybinder-make-base-format 's-S)
-             with fmt-H   = (xterm-keybinder-make-base-format 'hyper)
+             with fmt-H   = (xterm-keybinder-make-base-format 'H)
              with fmt-H-S = (xterm-keybinder-make-base-format 'H-S)
              for (c . C) in xterm-keybinder-key-pairs
              ;; normal char
@@ -278,7 +278,7 @@ You can use this to insert xterm configuration by yourself."
                (push (format fmt-H-S Shift Char C) hyper))
              finally (funcall ins (reverse (append hyper super))))
     ;; Shift Space
-    (let* ((last (format (xterm-keybinder-make-base-format 'shift)
+    (let* ((last (format (xterm-keybinder-make-base-format 'S) ; shift
                          "space" ?\s)))
       (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
@@ -287,13 +287,13 @@ You can use this to insert xterm configuration by yourself."
   (let ((C-x@ "string(0x18) string(0x40)"))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
             (xterm-keybinder-get-modifier sym)
-            (if (member sym '(shift ctrl super hyper))
+            (if (member sym '(S C s H))
                 ;; event modifier
                 (format "%s string(%s)" C-x@ (cl-case sym
-                                               (shift "0x53")
-                                               (ctrl  "0x63")
-                                               (super "0x73")
-                                               (hyper "0x68")))
+                                               (S "0x53")
+                                               (C  "0x63")
+                                               (s "0x73")
+                                               (H "0x68")))
               ;; \033[=
               (format xterm-keybinder-format
                       (assoc-default sym xterm-keybinder-table))))))
