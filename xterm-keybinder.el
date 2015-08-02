@@ -107,26 +107,6 @@ This configuration is only used at when you make xterm's key bind option by
   "List of cons (no-shifted-char . shifted-char).
 Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.")
 
-(defconst xterm-keybinder-CSI "\033[") ; this means M-[ or ESC [
-;; Use private key sequence of CSI
-;; Private keys: #x3c, #x3d, #x3e, or #x3f.
-;; See also: http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf page 26
-;; Is there other document? I seem 1998 is too old...
-(defconst xterm-keybinder-private-char #x3d)
-(defconst xterm-keybinder-prefix
-  (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
-(defconst xterm-keybinder-format
-  (format "string(\"\\033[%c%%s\")" xterm-keybinder-private-char))
-(defconst xterm-keybinder-C-char-list
-  '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
-(defconst xterm-keybinder-table
-  '((C-S   . "")
-    (C-M   . "===")
-    (C-M-S . "=")
-    (M-S   . "==")
-    (s-S   . "====")
-    (H-S   . "=====")))
-
 ;; based on XTerm's keysym.map
 (defconst xterm-keybinder-keysym-list
   '((?\s . "space")
@@ -179,6 +159,34 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     (M-S   "Alt Shift ~Ctrl ~Super ~Hyper")
     (s-S   "Super %s~Alt ~Ctrl ~Hyper")
     (H-S   "Hyper %s~Alt ~Ctrl ~Super")))
+
+(defconst xterm-keybinder-CSI "\033["
+  "The xterm-keybinder uses CSI key to make pseudo key bindings.
+Note that this variable can not be \\e[ because I failed to bind
+xterm-option.  (for future me) Also you can not set M-[ or ESC [ as
+keybind if you want to use this package.  Those keybinds conflict with
+escape sequence.")
+
+(defconst xterm-keybinder-private-char #x3d "Use private key sequence of CSI.")
+;; Private keys: #x3c, #x3d, #x3e, and #x3f.
+;;   See also: http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf page 26
+;;   Is there other document? I seem 1998 is too old...
+;; Note: On xt-mouse.el(this pacakge provides xterm-mouse-mode)
+;;       it's already used \e[< and \e[? which mean CSI #x3c and CSI #x3f.
+
+(defconst xterm-keybinder-prefix
+  (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
+(defconst xterm-keybinder-format
+  (format "string(\"\\033[%c%%s\")" xterm-keybinder-private-char))
+(defconst xterm-keybinder-C-char-list
+  '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
+(defconst xterm-keybinder-table
+  '((C-S   . "")
+    (C-M   . "===")
+    (C-M-S . "=")
+    (M-S   . "==")
+    (s-S   . "====")
+    (H-S   . "=====")))
 
 ;;;###autoload
 (defun xterm-keybinder-setup ()
