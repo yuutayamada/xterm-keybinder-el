@@ -67,6 +67,8 @@
 
 (require 'cl-lib)
 
+(defvar xterm-keybinder-direction-name "XTerm.VT100.translations:")
+
 (defvar xterm-keybinder-xterm-keybinds
   '("Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font()"
     "Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font()")
@@ -205,7 +207,7 @@ You can use this to insert xterm configuration by yourself."
   (interactive)
   (let ((ins (lambda (list &optional end)
                (insert (concat (mapconcat 'identity list "\n") (or end "\n"))))))
-    (insert "XTerm.VT100.translations: #override \\n\\\n")
+    (insert (format "%s #override \\n\\\n" xterm-keybinder-direction-name))
     ;; XTerm's functions
     (when xterm-keybinder-xterm-keybinds
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
