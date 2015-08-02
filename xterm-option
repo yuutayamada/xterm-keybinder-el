@@ -6,7 +6,8 @@
 
 \cat <<EOF
 'XTerm.VT100.translations: #override \n\
-  Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> equal: string(0x18) string(0x40) string(0x63) string(0x3d) \n\
   Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font() \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> colon: string(0x18) string(0x40) string(0x63) string(0x3a) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> semicolon: string(0x18) string(0x40) string(0x63) string(0x3b) \n\

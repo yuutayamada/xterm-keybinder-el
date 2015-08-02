@@ -69,13 +69,6 @@
 
 (defvar xterm-keybinder-direction-name "XTerm.VT100.translations:")
 
-(defvar xterm-keybinder-xterm-keybinds
-  '("Ctrl ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font()"
-    "Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font()")
-  "List of xterm's function keybinds.
-This configuration is only used at when you make xterm's key bind option by
-‘xterm-keybinder-insert’.  By default, use C-+ and C-- to change font size.")
-
 (defvar xterm-keybinder-key-pairs
   (append
    '((?\s . nil)
@@ -160,6 +153,40 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     (s-S   "Super %s~Alt ~Ctrl ~Hyper")
     (H-S   "Hyper %s~Alt ~Ctrl ~Super")))
 
+(defun xterm-keybinder-get-desc (keydef)
+  "Return pair of key and modifier from KEYDEF."
+  (let ((key-sec (cl-loop with keys = (reverse (string-to-list (key-description (kbd keydef))))
+                          for i from 0 to (length keys) by 2
+                          collect (nth i keys) into key-sec
+                          finally return (cons (car key-sec) (reverse (cdr key-sec))))))
+    ;; key . modifier
+    key-sec))
+
+(defun xterm-keybinder-format (keydef func-or-keysequence)
+  "Make key definition for xterm option from KEYDEF and FUNC-OR-KEYSEQUENCE string."
+  (let* ((pair (xterm-keybinder-get-desc keydef))
+         (char (car pair))
+         (no-shift (car (assoc char xterm-keybinder-key-pairs)))
+         (shifted  (cdr (rassoc char xterm-keybinder-key-pairs)))
+         (mod (xterm-keybinder-get-modifier (intern-soft (mapconcat 'string (cdr pair) "-")))))
+    (format "%s <KeyPress> %s: %s"
+            (if shifted
+                ;; Shifted key like C-+, hides no-shift key (in this case, C-=).
+                ;; To work around, omit Shift modifier. (but, [A-Z] work fine)
+                (replace-regexp-in-string "~?Shift " "" mod)
+              mod)
+            (assoc-default (or no-shift shifted) xterm-keybinder-keysym-list)
+            func-or-keysequence)))
+
+(defvar xterm-keybinder-xterm-keybinds
+  '(("C--" . "smaller-vt-font()")
+    ("C-=" . "string(0x18) string(0x40) string(0x63) string(0x3d)")
+    ("C-+" . "larger-vt-font()"))
+  "List of xterm's function keybinds.
+This configuration is only used at when you make xterm's key bind option by
+‘xterm-keybinder-insert’.  By default, this package adds C-+ and C--
+to change font size.")
+
 (defconst xterm-keybinder-CSI "\033["
   "The xterm-keybinder uses CSI key to make pseudo key bindings.
 Note that this variable can not be \\e[ because I failed to bind
@@ -233,7 +260,8 @@ You can use this to insert xterm configuration by yourself."
     ;; XTerm's functions
     (when xterm-keybinder-xterm-keybinds
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
-                           xterm-keybinder-xterm-keybinds)))
+                           (cl-loop for (key . def) in xterm-keybinder-xterm-keybinds
+                                    collect (xterm-keybinder-format key def)))))
     ;; Control keybinds
     (cl-loop with fmt-ctrl = (xterm-keybinder-make-base-format 'C) ; control
              for char in xterm-keybinder-C-char-list
