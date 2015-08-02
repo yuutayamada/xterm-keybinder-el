@@ -113,6 +113,20 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
 ;; See also: http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf page 26
 ;; Is there other document? I seem 1998 is too old...
 (defconst xterm-keybinder-private-char #x3d)
+(defun xterm-keybinder-get-modifier (symbol)
+  "Return precise modifier string from SYMBOL."
+  (cl-case symbol
+    (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
+    (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
+    (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
+    (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super")
+    (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
+    (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
+    (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")
+    (M-S   "Alt Shift ~Ctrl ~Super ~Hyper")
+    (s-S   "Super %s~Alt ~Ctrl ~Hyper")
+    (H-S   "Hyper %s~Alt ~Ctrl ~Super")))
+
 (defconst xterm-keybinder-prefix
   (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
 (defconst xterm-keybinder-format
@@ -272,17 +286,7 @@ You can use this to insert xterm configuration by yourself."
   ;; See also ‘event-apply-XXX-modifier’
   (let ((C-x@ "string(0x18) string(0x40)"))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
-            (cl-case sym
-              (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
-              (ctrl  "Ctrl ~Shift ~Alt ~Super ~Hyper")
-              (super "Super ~Ctrl ~Alt ~Shift ~Hyper")
-              (hyper "Hyper ~Ctrl ~Alt ~Shift ~Super")
-              (C-S   "Ctrl Shift  ~Alt ~Super ~Hyper")
-              (C-M   "Ctrl Alt ~Shift  ~Super ~Hyper")
-              (C-M-S "Ctrl Alt  Shift  ~Super ~Hyper")
-              (M-S   "Alt Shift ~Ctrl ~Super ~Hyper")
-              (s-S   "Super %s~Alt ~Ctrl ~Hyper")
-              (H-S   "Hyper %s~Alt ~Ctrl ~Super"))
+            (xterm-keybinder-get-modifier sym)
             (if (member sym '(shift ctrl super hyper))
                 ;; event modifier
                 (format "%s string(%s)" C-x@ (cl-case sym
