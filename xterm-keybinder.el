@@ -270,7 +270,7 @@ You can use this to insert xterm configuration by yourself."
 
 (defun xterm-keybinder-make-base-format (sym)
   ;; See also ‘event-apply-XXX-modifier’
-  (let ((C-x@ "string(0x18) string(0x40) "))
+  (let ((C-x@ "string(0x18) string(0x40)"))
     (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
             (cl-case sym
               (shift "Shift ~Ctrl ~Alt ~Super ~Hyper")
@@ -285,12 +285,11 @@ You can use this to insert xterm configuration by yourself."
               (H-S   "Hyper %s~Alt ~Ctrl ~Super"))
             (if (member sym '(shift ctrl super hyper))
                 ;; event modifier
-                (format "%s%s" C-x@ (format "string(%s)"
-                                            (cl-case sym
-                                              (shift "0x53")
-                                              (ctrl  "0x63")
-                                              (super "0x73")
-                                              (hyper "0x68"))))
+                (format "%s string(%s)" C-x@ (cl-case sym
+                                               (shift "0x53")
+                                               (ctrl  "0x63")
+                                               (super "0x73")
+                                               (hyper "0x68")))
               ;; \033[=
               (format xterm-keybinder-format
                       (assoc-default sym xterm-keybinder-table))))))
