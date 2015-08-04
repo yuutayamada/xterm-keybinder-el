@@ -100,45 +100,6 @@
   "List of cons (no-shifted-char . shifted-char).
 Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.")
 
-;; based on XTerm's keysym.map
-(defconst xterm-keybinder-keysym-list
-  '((?\s . "space")
-    (?!  . "exclam")
-    (?\" . "quotedbl")
-    (?#  . "numbersign")
-    (?$  . "dollar")
-    (?%  . "percent")
-    (?&  . "ampersand")
-    (?\' . "apostrophe")
-    (?\( . "parenleft")
-    (?\) . "parenright")
-    (?*  . "asterisk")
-    (?+  . "plus")
-    (?,  . "comma")
-    (?-  . "minus")
-    (?.  . "period")
-    (?/  . "slash")
-    ;; 0-9
-    (?:  . "colon")
-    (?\; . "semicolon")
-    (?<  . "less")
-    (?=  . "equal")
-    (?>  . "greater")
-    (?\? . "question")
-    (?@  . "at")
-    ;; A-Z
-    (?\[ . "bracketleft")
-    (?\\ . "backslash")
-    (?\] . "bracketright")
-    (?^  . "asciicircum")
-    (?_  . "underscore")
-    (?`  . "grave")
-    ;; a-z
-    (?\{ . "braceleft")
-    (?|  . "bar")
-    (?\} . "braceright")
-    (?~  . "asciitilde")))
-
 (defvar xterm-keybinder-table
   (let ((a-z (cl-loop for c from ?a to ?z collect c))
         (A-Z (cl-loop for c from ?A to ?Z collect c))
@@ -179,6 +140,45 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (spacer . "=====")
                 (Shift-keys   . ,(car S-chars))
                 (Shift-keys?  . ,(cdr S-chars)))))))
+
+;; based on XTerm's keysym.map
+(defconst xterm-keybinder-keysym-list
+  '((?\s . "space")
+    (?!  . "exclam")
+    (?\" . "quotedbl")
+    (?#  . "numbersign")
+    (?$  . "dollar")
+    (?%  . "percent")
+    (?&  . "ampersand")
+    (?\' . "apostrophe")
+    (?\( . "parenleft")
+    (?\) . "parenright")
+    (?*  . "asterisk")
+    (?+  . "plus")
+    (?,  . "comma")
+    (?-  . "minus")
+    (?.  . "period")
+    (?/  . "slash")
+    ;; 0-9
+    (?:  . "colon")
+    (?\; . "semicolon")
+    (?<  . "less")
+    (?=  . "equal")
+    (?>  . "greater")
+    (?\? . "question")
+    (?@  . "at")
+    ;; A-Z
+    (?\[ . "bracketleft")
+    (?\\ . "backslash")
+    (?\] . "bracketright")
+    (?^  . "asciicircum")
+    (?_  . "underscore")
+    (?`  . "grave")
+    ;; a-z
+    (?\{ . "braceleft")
+    (?|  . "bar")
+    (?\} . "braceright")
+    (?~  . "asciitilde")))
 
 (defun xterm-keybinder-get-desc (keydef)
   "Return pair of key and modifier from KEYDEF."
