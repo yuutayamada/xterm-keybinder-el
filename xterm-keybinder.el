@@ -139,7 +139,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     (?\} . "braceright")
     (?~  . "asciitilde")))
 
-(defconst xterm-keybinder-table
+(defvar xterm-keybinder-table
   (let ((a-z (cl-loop for c from ?a to ?z collect c))
         (A-Z (cl-loop for c from ?A to ?Z collect c))
         (chars (cl-loop for (c . _) in xterm-keybinder-key-pairs collect c))
