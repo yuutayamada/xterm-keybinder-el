@@ -318,20 +318,8 @@ You can use this to insert xterm configuration by yourself."
              collect (format fmt-ctrl it c) into C-keys
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
-    ;; Control and Shift
-    (funcall put-keydef 'C-S)
-    ;; Control and Alt
-    (funcall put-keydef 'C-M)
-    ;; Control, Alt and Shift
-    (funcall put-keydef 'C-M-S)
-    ;; Alt and Shift
-    (funcall put-keydef 'M-S)
-    ;; Super
-    (funcall put-keydef 's)
-    (funcall put-keydef 's-S)
-    ;; Hyper
-    (funcall put-keydef 'H)
-    (funcall put-keydef 'H-S)
+    ;; C-S, C-M, C-M-S, M-S, s, s-S, H and H-S
+    (cl-mapcar put-keydef '(C-S C-M C-M-S M-S s s-S H H-S))
     ;; Shift Space
     (let* ((last (format (xterm-keybinder-make-base-format 'S) ; shift
                          "space" ?\s)))
