@@ -275,8 +275,8 @@ escape sequence.")
   "Insert configuration for XTerm.
 You can use this to insert xterm configuration by yourself."
   (interactive)
-  (let* ((ins (lambda (list &optional end)
-                (insert (concat (mapconcat 'identity list "\n") (or end "\n")))))
+  (let* ((ins (lambda (list)
+                (insert (concat (mapconcat 'identity list "\n") "\n"))))
          (put-keydef
           (lambda (sym)
             (let-alist (assoc-default sym xterm-keybinder-table)
