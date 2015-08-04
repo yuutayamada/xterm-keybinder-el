@@ -146,7 +146,10 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
       (H-S   . ((mod    . "Hyper %s~Alt ~Ctrl ~Super")
                 (spacer . "=====")
                 (Shift-keys   . ,(car S-chars))
-                (Shift-keys?  . ,(cdr S-chars)))))))
+                (Shift-keys?  . ,(cdr S-chars))))
+      (A     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
+                (suffix . "0x61")
+                (keys   . (?m ?i)))))))
 
 ;; based on XTerm's keysym.map
 (defconst xterm-keybinder-keysym-list
@@ -246,7 +249,11 @@ escape sequence.")
 (defun xterm-keybinder-setup ()
   "Enable Emacs keybinds even in the xterm terminal Emacs."
   (interactive)
-  (cl-mapcar 'xterm-keybinder-set-keybinds '(C-S C-M C-M-S M-S H-S s-S)))
+  (cl-mapcar 'xterm-keybinder-set-keybinds '(C-S C-M C-M-S M-S H-S s-S))
+  (unless (lookup-key global-map (kbd "A-i"))
+    (global-set-key (kbd "A-i") (kbd "C-i")))
+  (unless (lookup-key global-map (kbd "A-m"))
+    (global-set-key (kbd "A-m") (kbd "C-m"))))
 
 (defun xterm-keybinder-set-keybinds (modifier)
   "Set keybinds which correspond to MODIFIER."
@@ -303,6 +310,10 @@ You can use this to insert xterm configuration by yourself."
                                     collect (xterm-keybinder-format key def)))))
     ;; C, C-S, C-M, C-M-S, M-S, s, s-S, H and H-S
     (cl-mapcar put-keydef '(C C-S C-M C-M-S M-S s s-S H H-S))
+    ;; Set C-m and C-i to A-m and A-i (and change later on)
+    (funcall ins
+             (cl-loop with fmt = (xterm-keybinder-make-base-format 'A)
+                      for c in '(?m ?i) collect (format fmt (string c) c)))
     ;; Shift Space
     (let* ((last (format (xterm-keybinder-make-base-format 'S) ; shift
                          "space" ?\s)))
@@ -314,7 +325,7 @@ You can use this to insert xterm configuration by yourself."
     (let-alist (assoc-default sym xterm-keybinder-table)
       (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
               .mod
-              (if (member sym '(S C s H))
+              (if (member sym '(S C s H A))
                   ;; event modifier
                   (format "%s string(%s)" C-x@ .suffix)
                 ;; \033[=
