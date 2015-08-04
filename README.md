@@ -7,8 +7,8 @@ This package lets you key binds that normally terminal Emacs can not use.
 
 | Modifiers  | Description                          |
 |:-----------|:-------------------------------------|
-| S          | space key with shift
-| C          | [:;,.'0-9]
+| S          | Space key with shift
+| C          | [2-8] (note: xterm.el supports other key binds)
 | C-S        | [A-Z]
 | C-M        | [a-z]
 | M-S        | [A-Z]

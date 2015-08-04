@@ -29,7 +29,7 @@
 ;;  | Modifiers  | Description                          |
 ;;  |:-----------|:-------------------------------------|
 ;;  | S          | space key with shift
-;;  | C          | [:;,.'0-9]
+;;  | C          | [2-8] (note: xterm.el supports other key binds)
 ;;  | C-S        | [A-Z]
 ;;  | C-M        | [a-z]
 ;;  | M-S        | [A-Z]
@@ -100,6 +100,13 @@
   "List of cons (no-shifted-char . shifted-char).
 Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.")
 
+;; xterm.el supports many control keys if users set modifyOtherKeys to 1, so
+;; I don't implement same keybinds.
+;; xterm.el supporting keys(my memo):
+;;   Control: C-tab,   C-return,   C-{ ',-./019;=\!"#$%&()*+:<>? }
+;;   C-M    : C-M-tab, C-M-return, C-M-SPC, C-M-{ ',-./0-9;=\!"#$%&()*+:<>? }
+;;   Shift  : S-tab, S-return
+;;   C-S    : C-S-tab, C-S-return
 (defvar xterm-keybinder-table
   (let ((a-z (cl-loop for c from ?a to ?z collect c))
         (A-Z (cl-loop for c from ?A to ?Z collect c))
@@ -113,7 +120,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (suffix . "0x53")))
       (C     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
                 (suffix . "0x63")
-                (keys   . (?\; ?, ?. ?' ?0 ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9))))
+                (keys   . (?2 ?3 ?4 ?5 ?6 ?7 ?8))))
       (s     . ((mod    . "Super ~Ctrl ~Alt ~Shift ~Hyper")
                 (suffix . "0x73")
                 (keys   .  ,chars)))
