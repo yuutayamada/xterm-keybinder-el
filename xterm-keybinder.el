@@ -151,7 +151,8 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     `((S     . ((mod    . "Shift ~Ctrl ~Alt ~Super ~Hyper")
                 (suffix . "0x53")))
       (C     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
-                (suffix . "0x63")))
+                (suffix . "0x63")
+                (keys   . (?\; ?, ?. ?' ?0 ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9))))
       (s     . ((mod    . "Super ~Ctrl ~Alt ~Shift ~Hyper")
                 (suffix . "0x73")
                 (keys   .  ,chars)))
@@ -233,8 +234,6 @@ escape sequence.")
   (format "%s%c" xterm-keybinder-CSI xterm-keybinder-private-char))
 (defconst xterm-keybinder-format
   (format "string(\"\\033[%c%%s\")" xterm-keybinder-private-char))
-(defconst xterm-keybinder-C-char-list
-  '(":" ";" "," "." "'" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
 
 ;;;###autoload
 (defun xterm-keybinder-setup ()
@@ -308,18 +307,8 @@ You can use this to insert xterm configuration by yourself."
       (funcall ins (mapcar (lambda (str) (format "  %s \\n\\" str))
                            (cl-loop for (key . def) in xterm-keybinder-xterm-keybinds
                                     collect (xterm-keybinder-format key def)))))
-    ;; Control keybinds
-    (cl-loop with fmt-ctrl = (xterm-keybinder-make-base-format 'C) ; control
-             for char in xterm-keybinder-C-char-list
-             for c = (string-to-char char)
-             ;; xrdb occur warning if it uses "'" as xresource
-             ;; configuration, so this conversion has to do.
-             if (assoc-default c xterm-keybinder-keysym-list)
-             collect (format fmt-ctrl it c) into C-keys
-             else collect (format fmt-ctrl char c) into C-keys
-             finally (funcall ins C-keys))
-    ;; C-S, C-M, C-M-S, M-S, s, s-S, H and H-S
-    (cl-mapcar put-keydef '(C-S C-M C-M-S M-S s s-S H H-S))
+    ;; C, C-S, C-M, C-M-S, M-S, s, s-S, H and H-S
+    (cl-mapcar put-keydef '(C C-S C-M C-M-S M-S s s-S H H-S))
     ;; Shift Space
     (let* ((last (format (xterm-keybinder-make-base-format 'S) ; shift
                          "space" ?\s)))

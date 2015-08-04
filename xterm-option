@@ -9,11 +9,10 @@
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> equal: string(0x18) string(0x40) string(0x63) string(0x3d) \n\
   Ctrl ~Alt ~Super ~Hyper <KeyPress> plus: larger-vt-font() \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> colon: string(0x18) string(0x40) string(0x63) string(0x3a) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> semicolon: string(0x18) string(0x40) string(0x63) string(0x3b) \n\
+  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> apostrophe: string(0x18) string(0x40) string(0x63) string(0x27) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> comma: string(0x18) string(0x40) string(0x63) string(0x2c) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> period: string(0x18) string(0x40) string(0x63) string(0x2e) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> apostrophe: string(0x18) string(0x40) string(0x63) string(0x27) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 0: string(0x18) string(0x40) string(0x63) string(0x30) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 1: string(0x18) string(0x40) string(0x63) string(0x31) \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> 2: string(0x18) string(0x40) string(0x63) string(0x32) \n\
