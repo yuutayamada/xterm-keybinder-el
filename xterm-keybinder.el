@@ -239,37 +239,24 @@ escape sequence.")
 (defun xterm-keybinder-setup ()
   "Enable Emacs keybinds even in the xterm terminal Emacs."
   (interactive)
-  (let-alist xterm-keybinder-table
-    (let ((prefix xterm-keybinder-prefix)
-          (map input-decode-map)
-          (cs  .C-S.spacer)
-          (cm  .C-M.spacer)
-          (cms .C-M-S.spacer)
-          (ms  .M-S.spacer)
-          (sS  .s-S.spacer)
-          (hS  .H-S.spacer))
-      ;; C-S-[a-z], C-M-[a-z] and C-M-S-[a-z]
-      (cl-loop with defkey = (lambda (props)
-                               (cl-loop for (mod c key) in props do
-                                        (define-key map (format "%s%s%c" prefix mod c) key)))
-               for c from ?\s to ?~
-               for char = "SPC" then (downcase (char-to-string c))
-               for C-S-key   = (kbd (concat "C-S-"   char))
-               for C-M-key   = (kbd (concat "C-M-"   char))
-               for C-M-S-key = (kbd (concat "C-M-S-" char))
-               for M-S-key   = (kbd (concat "M-S-"   char))
-               for s-S-key   = (kbd (concat "s-S-"   char))
-               for H-S-key   = (kbd (concat "H-S-"   char))
-               if (eq c ?=) do '() ; just ignore
-               else if (<= ?A c ?Z) do
-               (funcall defkey `((,cs ,c ,C-S-key) (,cms ,c ,C-M-S-key) (,ms ,c ,M-S-key)
-                                 (,sS ,c ,s-S-key) (,hS ,c ,H-S-key)))
-               else if (<= ?a c ?z) do
-               (funcall defkey `((,cm ,c ,C-M-key)))
-               else if (eq c ?\s) do ; for space
-               (funcall defkey `((,cs ,c ,C-S-key) (,cm ,c ,C-M-key) (,cms ,c ,C-M-S-key)))
-               else
-               do (funcall defkey `((,hS ,c ,H-S-key) (,sS ,c ,s-S-key)))))))
+  (cl-mapcar 'xterm-keybinder-set-keybinds '(C-S C-M C-M-S M-S H-S s-S)))
+
+(defun xterm-keybinder-set-keybinds (modifier)
+  "Set keybinds which correspond to MODIFIER."
+  (let-alist (assoc-default modifier xterm-keybinder-table)
+    (let* ((prefix xterm-keybinder-prefix)
+           (defkey
+             (lambda (keys)
+               (cl-loop for c in keys
+                        for char = (downcase (char-to-string c))
+                        do (define-key input-decode-map
+                             (format "%s%s%c" prefix .spacer c)
+                             (kbd (format "%s-%s" modifier
+                                          (if (eq ?\s c) "SPC" char))))))))
+      (if .keys
+          (funcall defkey .keys)
+        (when (or .Shift-keys .Shift-keys?)
+          (funcall defkey (append .Shift-keys .Shift-keys?)))))))
 
 (defun xterm-keybinder-insert ()
   "Insert configuration for XTerm.
