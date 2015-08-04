@@ -156,7 +156,8 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
               (spacer . "===")
               (keys   . ,(rx (or space (any "a-z"))))))
     (C-M-S . ((mod    . "Ctrl Alt  Shift  ~Super ~Hyper")
-              (spacer . "=")))
+              (spacer . "=")
+              (Keys   . ,(rx (or space (any "A-Z"))))))
     (M-S   . ((mod    . "Alt Shift ~Ctrl ~Super ~Hyper")
               (spacer . "==")))
     (s-S   . ((mod    . "Super %s~Alt ~Ctrl ~Hyper")
@@ -302,19 +303,17 @@ You can use this to insert xterm configuration by yourself."
     (funcall put-keydef 'C-S)
     ;; Control and Alt
     (funcall put-keydef 'C-M)
+    ;; Control, Alt and Shift
+    (funcall put-keydef 'C-M-S)
     ;; Control, Alt, Shift
-    (cl-loop with cms and ms
-             with fmt-C-M-S = (xterm-keybinder-make-base-format 'C-M-S)
+    (cl-loop with ms
              with fmt-M-S   = (xterm-keybinder-make-base-format 'M-S)
              for c from ?\s to ?~
              for char = (or (assoc-default c xterm-keybinder-keysym-list)
                             (char-to-string c))
              if (<= ?A c ?Z) do
-             (push (format fmt-C-M-S char c) cms)
              (push (format fmt-M-S char c) ms)
-             else if (eq c ?\s) do
-             (push (format fmt-C-M-S char c) cms)
-             finally (funcall ins (reverse (append ms cms))))
+             finally (funcall ins (reverse ms)))
     ;; Super and Hyper
     (cl-loop with super and hyper
              with fmt-s   = (xterm-keybinder-make-base-format 's)
