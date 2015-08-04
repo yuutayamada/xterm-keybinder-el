@@ -156,7 +156,8 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (suffix . "0x73")
                 (keys   .  ,chars)))
       (H     . ((mod    . "Hyper ~Ctrl ~Alt ~Shift ~Super")
-                (suffix . "0x68")))
+                (suffix . "0x68")
+                (keys   .  ,chars)))
       (C-S   . ((mod    . "Ctrl Shift  ~Alt ~Super ~Hyper")
                 (spacer . "")
                 (Shift-keys   . ,(append '(?\s) A-Z))))
@@ -174,7 +175,9 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (Shift-keys   . ,(car S-chars))
                 (Shift-keys?  . ,(cdr S-chars))))
       (H-S   . ((mod    . "Hyper %s~Alt ~Ctrl ~Super")
-                (spacer . "====="))))))
+                (spacer . "=====")
+                (Shift-keys   . ,(car S-chars))
+                (Shift-keys?  . ,(cdr S-chars)))))))
 
 (defun xterm-keybinder-get-desc (keydef)
   "Return pair of key and modifier from KEYDEF."
@@ -326,23 +329,9 @@ You can use this to insert xterm configuration by yourself."
     ;; Super
     (funcall put-keydef 's)
     (funcall put-keydef 's-S)
-    ;; Super and Hyper
-    (cl-loop with hyper
-             with fmt-H   = (xterm-keybinder-make-base-format 'H)
-             with fmt-H-S = (xterm-keybinder-make-base-format 'H-S)
-             for (c . C) in xterm-keybinder-key-pairs
-             ;; normal char
-             for char = (or (assoc-default c xterm-keybinder-keysym-list)
-                            (char-to-string c))
-             ;; capitalized char
-             for Char = (and C
-                             (or (assoc-default C xterm-keybinder-keysym-list)
-                                 (char-to-string C)))
-             do (push (format fmt-H char c) hyper)
-             if C do
-             (let ((Shift (if (<= ?A C ?Z) "Shift " "")))
-               (push (format fmt-H-S Shift Char C) hyper))
-             finally (funcall ins (reverse (append hyper))))
+    ;; Hyper
+    (funcall put-keydef 'H)
+    (funcall put-keydef 'H-S)
     ;; Shift Space
     (let* ((last (format (xterm-keybinder-make-base-format 'S) ; shift
                          "space" ?\s)))
