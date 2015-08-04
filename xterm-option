@@ -132,6 +132,7 @@
   Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> Y: string("\033[===") string(0x59) \n\
   Alt Shift ~Ctrl ~Super ~Hyper <KeyPress> Z: string("\033[===") string(0x5a) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x73) string(0x20) \n\
+  Super ~Alt ~Ctrl ~Hyper <KeyPress> space: string("\033[=====") string(0x20) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> grave: string(0x18) string(0x40) string(0x73) string(0x60) \n\
   Super ~Alt ~Ctrl ~Hyper <KeyPress> asciitilde: string("\033[=====") string(0x7e) \n\
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> minus: string(0x18) string(0x40) string(0x73) string(0x2d) \n\
@@ -227,6 +228,7 @@
   Super ~Ctrl ~Alt ~Shift ~Hyper <KeyPress> z: string(0x18) string(0x40) string(0x73) string(0x7a) \n\
   Super Shift ~Alt ~Ctrl ~Hyper <KeyPress> Z: string("\033[=====") string(0x5a) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> space: string(0x18) string(0x40) string(0x68) string(0x20) \n\
+  Hyper ~Alt ~Ctrl ~Super <KeyPress> space: string("\033[======") string(0x20) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> grave: string(0x18) string(0x40) string(0x68) string(0x60) \n\
   Hyper ~Alt ~Ctrl ~Super <KeyPress> asciitilde: string("\033[======") string(0x7e) \n\
   Hyper ~Ctrl ~Alt ~Shift ~Super <KeyPress> minus: string(0x18) string(0x40) string(0x68) string(0x2d) \n\

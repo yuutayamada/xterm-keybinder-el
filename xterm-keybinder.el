@@ -71,7 +71,7 @@
 
 (defvar xterm-keybinder-key-pairs
   (append
-   '((?\s . nil)
+   '((?\s . ?\s)
      (?`  . ?~)
      (?-  . ?_)
      (?=  . ?+)
