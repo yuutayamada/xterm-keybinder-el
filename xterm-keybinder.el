@@ -66,6 +66,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'rx)
 
 (defvar xterm-keybinder-direction-name "XTerm.VT100.translations:")
 
@@ -140,7 +141,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     (?~  . "asciitilde")))
 
 (defconst xterm-keybinder-table
-  '((S     . ((mod    . "Shift ~Ctrl ~Alt ~Super ~Hyper")
+  `((S     . ((mod    . "Shift ~Ctrl ~Alt ~Super ~Hyper")
               (suffix . "0x53")))
     (C     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
               (suffix . "0x63")))
@@ -149,7 +150,8 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
     (H     . ((mod    . "Hyper ~Ctrl ~Alt ~Shift ~Super")
               (suffix . "0x68")))
     (C-S   . ((mod    . "Ctrl Shift  ~Alt ~Super ~Hyper")
-              (spacer . "")))
+              (spacer . "")
+              (keys   . ,(rx (or space (any "A-Z"))))))
     (C-M   . ((mod    . "Ctrl Alt ~Shift  ~Super ~Hyper")
               (spacer . "===")))
     (C-M-S . ((mod    . "Ctrl Alt  Shift  ~Super ~Hyper")
@@ -258,8 +260,21 @@ escape sequence.")
   "Insert configuration for XTerm.
 You can use this to insert xterm configuration by yourself."
   (interactive)
-  (let ((ins (lambda (list &optional end)
-               (insert (concat (mapconcat 'identity list "\n") (or end "\n"))))))
+  (let* ((ins (lambda (list &optional end)
+                (insert (concat (mapconcat 'identity list "\n") (or end "\n")))))
+         (put-keydef
+          (lambda (sym)
+            (let-alist (assoc-default sym xterm-keybinder-table)
+              (cl-loop with result
+                       with fmt = (xterm-keybinder-make-base-format sym)
+                       for (_ . C) in xterm-keybinder-key-pairs
+                       ;; capitalized char
+                       for Char = (and C
+                                       (or (assoc-default C xterm-keybinder-keysym-list)
+                                           (char-to-string C)))
+                       if (string-match .keys (string C))
+                       do (push (format fmt Char C) result)
+                       finally (funcall ins (reverse result)))))))
     (insert (format "%s #override \\n\\\n" xterm-keybinder-direction-name))
     ;; XTerm's functions
     (when xterm-keybinder-xterm-keybinds
@@ -276,9 +291,10 @@ You can use this to insert xterm configuration by yourself."
              collect (format fmt-ctrl it c) into C-keys
              else collect (format fmt-ctrl char c) into C-keys
              finally (funcall ins C-keys))
+    ;; Control and Shift
+    (funcall put-keydef 'C-S)
     ;; Control, Alt, Shift
-    (cl-loop with cs and cm and cms and ms
-             with fmt-C-S   = (xterm-keybinder-make-base-format 'C-S)
+    (cl-loop with cm and cms and ms
              with fmt-C-M   = (xterm-keybinder-make-base-format 'C-M)
              with fmt-C-M-S = (xterm-keybinder-make-base-format 'C-M-S)
              with fmt-M-S   = (xterm-keybinder-make-base-format 'M-S)
@@ -288,14 +304,12 @@ You can use this to insert xterm configuration by yourself."
              if (<= ?a c ?z) do
              (push (format fmt-C-M char c) cm)
              else if (<= ?A c ?Z) do
-             (push (format fmt-C-S char c) cs)
              (push (format fmt-C-M-S char c) cms)
              (push (format fmt-M-S char c) ms)
              else if (eq c ?\s) do
-             (push (format fmt-C-S char c) cs)
              (push (format fmt-C-M-S char c) cms)
              (push (format fmt-C-M char c) cm)
-             finally (funcall ins (reverse (append ms cms cm cs))))
+             finally (funcall ins (reverse (append ms cms cm))))
     ;; Super and Hyper
     (cl-loop with super and hyper
              with fmt-s   = (xterm-keybinder-make-base-format 's)
