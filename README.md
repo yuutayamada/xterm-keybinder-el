@@ -16,6 +16,20 @@ This package lets you key binds that normally terminal Emacs can not use.
 | s or s-S   | from space to "~" (almost 8 bits characters without control sequences)
 | H or H-S   | same as s-S, but use Hyper modifier
 
+
+## Prerequisite
+1. XTerm (of course)
+2. XTerm's configuration
+
+   You may need to configure your .Xresources file if you don't use XTerm yet.
+   (You can update by xrdb command)
+
+   ```sh
+   XTerm*VT100.eightBitInput: false
+   XTerm*modifyOtherKeys: 1
+   XTerm*vt100.formatOtherKeys: 1
+   ```
+
 ## Usage
 
 Put below configuration to your .emacs
@@ -43,13 +57,7 @@ If you put xterm-option of this package in your xterm resource,
 you may have trouble because some applications already used overridden
 key sequences.
 
-Also you may need following configuration at .Xresources and update it by
-xrdb command.
 
-```sh
-XTerm*VT100.eightBitInput: false
-XTerm*modifyOtherKeys: 1
-XTerm*vt100.formatOtherKeys: 1
 ```
 
 ## Contribution

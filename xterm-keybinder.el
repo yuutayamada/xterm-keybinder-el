@@ -37,6 +37,20 @@
 ;;  | s or s-S   | from space to "~" (almost 8 bits characters without control sequences)
 ;;  | H or H-S   | same as s-S, but use Hyper modifier
 ;;
+;; Prerequisite:
+;;
+;; 1. XTerm (of course)
+;; 2. XTerm's configuration
+;;
+;;    You may need to configure your .Xresources file if you don't use XTerm yet.
+;;    (You can update by xrdb command)
+;;
+;;    -- configuration
+;;    XTerm*VT100.eightBitInput: false
+;;    XTerm*modifyOtherKeys: 1
+;;    XTerm*vt100.formatOtherKeys: 1
+;;    -- end of configuration
+;;
 ;; Usage:
 ;; Put below configuration to your .emacs
 ;;
@@ -56,12 +70,6 @@
 ;; Note:
 ;; You may need following configuration at .Xresources and update it by
 ;; xrdb command.
-;;
-;; -- configuration
-;;   XTerm*VT100.eightBitInput: false
-;;   XTerm*modifyOtherKeys: 1
-;;   XTerm*vt100.formatOtherKeys: 1
-;; -- end of configuration
 ;;
 ;;; Code:
 
