@@ -141,13 +141,20 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
 
 (defconst xterm-keybinder-table
   (let ((a-z (cl-loop for c from ?a to ?z collect c))
-        (A-Z (cl-loop for c from ?A to ?Z collect c)))
+        (A-Z (cl-loop for c from ?A to ?Z collect c))
+        (chars (cl-loop for (c . _) in xterm-keybinder-key-pairs collect c))
+        (S-chars (cl-loop for (_ . C) in xterm-keybinder-key-pairs
+                          if (<= ?A C ?Z)
+                          collect C into skeys
+                          else collect C into skeys?
+                          finally return (cons skeys skeys?))))
     `((S     . ((mod    . "Shift ~Ctrl ~Alt ~Super ~Hyper")
                 (suffix . "0x53")))
       (C     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
                 (suffix . "0x63")))
       (s     . ((mod    . "Super ~Ctrl ~Alt ~Shift ~Hyper")
-                (suffix . "0x73")))
+                (suffix . "0x73")
+                (keys   .  ,chars)))
       (H     . ((mod    . "Hyper ~Ctrl ~Alt ~Shift ~Super")
                 (suffix . "0x68")))
       (C-S   . ((mod    . "Ctrl Shift  ~Alt ~Super ~Hyper")
@@ -163,7 +170,9 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (spacer . "==")
                 (Shift-keys   . ,(append A-Z))))
       (s-S   . ((mod    . "Super %s~Alt ~Ctrl ~Hyper")
-                (spacer . "====")))
+                (spacer . "====")
+                (Shift-keys   . ,(car S-chars))
+                (Shift-keys?  . ,(cdr S-chars))))
       (H-S   . ((mod    . "Hyper %s~Alt ~Ctrl ~Super")
                 (spacer . "====="))))))
 
@@ -283,7 +292,12 @@ You can use this to insert xterm configuration by yourself."
                        if (and .keys (member c .keys))
                        do (push (format fmt char c) result)
                        if (and .Shift-keys (member C .Shift-keys))
-                       do (push (format fmt Char C) result)
+                       do (push (if .Shift-keys?
+                                    (format fmt "Shift " Char C)
+                                  (format fmt Char C))
+                                result)
+                       if (and .Shift-keys? (member C .Shift-keys?))
+                       do (push (format fmt "" Char C) result)
                        finally (funcall ins (reverse result)))))))
     (insert (format "%s #override \\n\\\n" xterm-keybinder-direction-name))
     ;; XTerm's functions
@@ -309,10 +323,11 @@ You can use this to insert xterm configuration by yourself."
     (funcall put-keydef 'C-M-S)
     ;; Alt and Shift
     (funcall put-keydef 'M-S)
+    ;; Super
+    (funcall put-keydef 's)
+    (funcall put-keydef 's-S)
     ;; Super and Hyper
-    (cl-loop with super and hyper
-             with fmt-s   = (xterm-keybinder-make-base-format 's)
-             with fmt-s-S = (xterm-keybinder-make-base-format 's-S)
+    (cl-loop with hyper
              with fmt-H   = (xterm-keybinder-make-base-format 'H)
              with fmt-H-S = (xterm-keybinder-make-base-format 'H-S)
              for (c . C) in xterm-keybinder-key-pairs
@@ -323,13 +338,11 @@ You can use this to insert xterm configuration by yourself."
              for Char = (and C
                              (or (assoc-default C xterm-keybinder-keysym-list)
                                  (char-to-string C)))
-             do (progn (push (format fmt-s char c) super)
-                       (push (format fmt-H char c) hyper))
+             do (push (format fmt-H char c) hyper)
              if C do
              (let ((Shift (if (<= ?A C ?Z) "Shift " "")))
-               (push (format fmt-s-S Shift Char C) super)
                (push (format fmt-H-S Shift Char C) hyper))
-             finally (funcall ins (reverse (append hyper super))))
+             finally (funcall ins (reverse (append hyper))))
     ;; Shift Space
     (let* ((last (format (xterm-keybinder-make-base-format 'S) ; shift
                          "space" ?\s)))
