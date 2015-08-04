@@ -16,6 +16,10 @@ This package lets you key binds that normally terminal Emacs can not use.
 | s or s-S   | from space to "~" (almost 8 bits characters without control sequences)
 | H or H-S   | same as s-S, but use Hyper modifier
 
+Also this package enables C-m and C-i keybinds as A-m and A-i, but
+if you don't set A-m and A-i keys, automatically those keys refer
+to original keybinds. So basically you don't need care about that until
+you want to configure those keys. (See also enable C-m and C-i keys section)
 
 ## Prerequisite
 1. XTerm (of course)
@@ -57,8 +61,34 @@ If you put xterm-option of this package in your xterm resource,
 you may have trouble because some applications already used overridden
 key sequences.
 
+## Enable C-m and C-i keys
+Like GUI Emacs, this package provides similar feature.
+To activate, this feature you just use "A-" prefix to bind keys.
 
+```lisp
+(global-set-key (kbd "A-i") '(lambda () (interactive) (print "C-i key"))
+(global-set-key (kbd "A-m") '(lambda () (interactive) (print "C-m key"))
 ```
+
+Also below configuration might help to use either terminal Emacs and
+GUI Emacs.
+
+```lisp
+(global-set-key (kbd "C-i")
+                (lambda () (interactive)
+                  (call-interactively
+                   (if (display-graphic-p)
+                       (lookup-key global-map (kbd "A-i"))
+                     (lookup-key global-map [tab])))))
+(global-set-key (kbd "C-m")
+                (lambda () (interactive)
+                  (call-interactively
+                   (if (display-graphic-p)
+                       (lookup-key global-map (kbd "A-m"))
+                     (lookup-key global-map [return])))))
+```
+
+You can bind keys return and tab keys by using [return] and [tab].
 
 ## Contribution
 
