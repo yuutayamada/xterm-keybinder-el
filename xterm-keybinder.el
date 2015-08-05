@@ -37,11 +37,6 @@
 ;;  | s or s-S   | from space to "~" (almost 8 bits characters without control sequences)
 ;;  | H or H-S   | same as s-S, but use Hyper modifier
 ;;
-;; Also this package enables C-m and C-i keybinds as A-m and A-i, but
-;; if you don't set A-m and A-i keys, automatically those keys refer
-;; to original keybinds. So basically you don't need care about that until
-;; you want to configure those keys.
-;;
 ;; Prerequisite:
 ;;
 ;; 1. XTerm (of course)
