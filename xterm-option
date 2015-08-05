@@ -315,7 +315,5 @@
   Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> X: string("\033[======") string(0x58) \n\
   Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> Y: string("\033[======") string(0x59) \n\
   Hyper Shift ~Alt ~Ctrl ~Super <KeyPress> Z: string("\033[======") string(0x5a) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> m: string(0x18) string(0x40) string(0x61) string(0x6d) \n\
-  Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> i: string(0x18) string(0x40) string(0x61) string(0x69) \n\
   Shift ~Ctrl ~Alt ~Super ~Hyper <KeyPress> space: string(0x18) string(0x40) string(0x53) string(0x20)'
 EOF
