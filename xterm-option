@@ -4,6 +4,23 @@
 # function. See also xterm-keybinder-xterm-keybinds variable to change
 # default xterm's functions.
 
+# Rule of this configuration:
+# If there are apply event modifier, I used that way because
+# I don't need to write keybinding's code for Emacs side.
+# (see also event-apply-XXX-modifier functions)
+# Otherwise, I used following key set style:
+#
+#   "CSI" + "=" + spacer + KEY
+#
+# The "=" is private key in xterm and the spacer is set of "=", but
+# the number is varies. I used this to distinguish modifier's group.
+# The KEY is a key that you push with modifier.
+
+# Note:
+# If you add something by yourself, please note that shifted keybinds
+# are prioritized than no-shifted keys, so to enable both keybinds
+# you need to put no-shifted keys above than shifted-keys.
+
 \cat <<EOF
 'XTerm.VT100.translations: #override \n\
   Ctrl ~Shift ~Alt ~Super ~Hyper <KeyPress> minus: smaller-vt-font() \n\
