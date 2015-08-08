@@ -124,38 +124,38 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                           collect C into skeys
                           else collect C into skeys?
                           finally return (cons skeys skeys?))))
-    `((S     . ((mod    . "Shift ~Ctrl ~Alt ~Super ~Hyper")
+    `((S     . ((xtmod    . "Shift ~Ctrl ~Alt ~Super ~Hyper")
                 (suffix . "0x53")))
-      (C     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
+      (C     . ((xtmod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
                 (suffix . "0x63")
                 (keys   . (?2 ?3 ?4 ?5 ?6 ?7 ?8))))
-      (s     . ((mod    . "Super ~Ctrl ~Alt ~Shift ~Hyper")
+      (s     . ((xtmod    . "Super ~Ctrl ~Alt ~Shift ~Hyper")
                 (suffix . "0x73")
                 (keys   .  ,chars)))
-      (H     . ((mod    . "Hyper ~Ctrl ~Alt ~Shift ~Super")
+      (H     . ((xtmod    . "Hyper ~Ctrl ~Alt ~Shift ~Super")
                 (suffix . "0x68")
                 (keys   .  ,chars)))
-      (C-S   . ((mod    . "Ctrl Shift  ~Alt ~Super ~Hyper")
+      (C-S   . ((xtmod    . "Ctrl Shift  ~Alt ~Super ~Hyper")
                 (spacer . "")
                 (Shift-keys   . ,(append '(?\s) A-Z))))
-      (C-M   . ((mod    . "Ctrl Alt ~Shift  ~Super ~Hyper")
+      (C-M   . ((xtmod    . "Ctrl Alt ~Shift  ~Super ~Hyper")
                 (spacer . "===")
                 (keys   . ,(append '(?\s) a-z))))
-      (C-M-S . ((mod    . "Ctrl Alt  Shift  ~Super ~Hyper")
+      (C-M-S . ((xtmod    . "Ctrl Alt  Shift  ~Super ~Hyper")
                 (spacer . "=")
                 (Shift-keys . ,(append '(?\s) A-Z))))
-      (M-S   . ((mod    . "Alt Shift ~Ctrl ~Super ~Hyper")
+      (M-S   . ((xtmod    . "Alt Shift ~Ctrl ~Super ~Hyper")
                 (spacer . "==")
                 (Shift-keys   . ,(append A-Z))))
-      (s-S   . ((mod    . "Super %s~Alt ~Ctrl ~Hyper")
+      (s-S   . ((xtmod    . "Super %s~Alt ~Ctrl ~Hyper")
                 (spacer . "====")
                 (Shift-keys   . ,(car S-chars))
                 (Shift-keys?  . ,(cdr S-chars))))
-      (H-S   . ((mod    . "Hyper %s~Alt ~Ctrl ~Super")
+      (H-S   . ((xtmod    . "Hyper %s~Alt ~Ctrl ~Super")
                 (spacer . "=====")
                 (Shift-keys   . ,(car S-chars))
                 (Shift-keys?  . ,(cdr S-chars))))
-      (A     . ((mod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
+      (A     . ((xtmod    . "Ctrl ~Shift ~Alt ~Super ~Hyper")
                 (suffix . "0x61")
                 (keys   . (?m ?i)))))))
 
@@ -216,15 +216,15 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
          (char (car pair))
          (no-shift (car (assoc char xterm-keybinder-key-pairs)))
          (shifted  (cdr (rassoc char xterm-keybinder-key-pairs)))
-         (mod
-          (assoc-default 'mod (assoc-default (intern-soft (mapconcat 'string (cdr pair) "-"))
-                                             xterm-keybinder-table))))
+         (xtmod
+          (assoc-default 'xtmod (assoc-default (intern-soft (mapconcat 'string (cdr pair) "-"))
+                                               xterm-keybinder-table))))
     (format "%s <KeyPress> %s: %s"
             (if shifted
                 ;; Shifted key like C-+, hides no-shift key (in this case, C-=).
                 ;; To work around, omit Shift modifier. (but, [A-Z] work fine)
-                (replace-regexp-in-string "~?Shift " "" mod)
-              mod)
+                (replace-regexp-in-string "~?Shift " "" xtmod)
+              xtmod)
             (assoc-default (or no-shift shifted) xterm-keybinder-keysym-list)
             func-or-keysequence)))
 
@@ -338,7 +338,7 @@ You can use this to insert xterm configuration by yourself."
   (let ((C-x@ "string(0x18) string(0x40)"))
     (let-alist (assoc-default sym xterm-keybinder-table)
       (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
-              .mod
+              .xtmod
               (if (member sym '(S C s H A))
                   ;; event modifier
                   (format "%s string(%s)" C-x@ .suffix)
