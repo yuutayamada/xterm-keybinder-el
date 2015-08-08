@@ -10,7 +10,7 @@ This package lets you key binds that normally terminal Emacs can not use.
 | S          | Space key with shift
 | C          | [2-8] (note: xterm.el supports other key binds)
 | C-S        | [A-Z]
-| C-M        | [a-z]
+| C-M        | "g" and space keys
 | M-S        | [A-Z]
 | C-M-S      | [A-Z]
 | s or s-S   | from space to "~" (almost 8 bits characters without control sequences)

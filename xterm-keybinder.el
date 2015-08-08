@@ -31,7 +31,7 @@
 ;;  | S          | space key with shift
 ;;  | C          | [2-8] (note: xterm.el supports other key binds)
 ;;  | C-S        | [A-Z]
-;;  | C-M        | [a-z]
+;;  | C-M        | "g" and space keys
 ;;  | M-S        | [A-Z]
 ;;  | C-M-S      | [A-Z]
 ;;  | s or s-S   | from space to "~" (almost 8 bits characters without control sequences)
@@ -116,8 +116,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
 ;;   Shift  : S-tab, S-return
 ;;   C-S    : C-S-tab, C-S-return
 (defvar xterm-keybinder-table
-  (let ((a-z (cl-loop for c from ?a to ?z collect c))
-        (A-Z (cl-loop for c from ?A to ?Z collect c))
+  (let ((A-Z (cl-loop for c from ?A to ?Z collect c))
         (chars (cl-loop for (c . _) in xterm-keybinder-key-pairs collect c))
         (S-chars (cl-loop for (_ . C) in xterm-keybinder-key-pairs
                           if (<= ?A C ?Z)
@@ -140,7 +139,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (Shift-keys   . ,(append '(?\s) A-Z))))
       (C-M   . ((xtmod    . "Ctrl Alt ~Shift  ~Super ~Hyper")
                 (spacer . "===")
-                (keys   . ,(append '(?\s) a-z))))
+                (keys   . (?\s ?g))))
       (C-M-S . ((xtmod    . "Ctrl Alt  Shift  ~Super ~Hyper")
                 (spacer . "=")
                 (Shift-keys . ,(append '(?\s) A-Z))))
