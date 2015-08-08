@@ -346,7 +346,7 @@ You can use this to insert xterm configuration by yourself."
                 (format xterm-keybinder-format .spacer))))))
 
 ;; For debug
-;;  (message (key-description (read-key-sequence "input: ")))
+;;  (message (key-description (read-key-sequence-vector "input: ")))
 
 (provide 'xterm-keybinder)
 ;;; xterm-keybinder.el ends here
