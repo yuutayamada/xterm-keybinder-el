@@ -25,7 +25,6 @@ This package lets you key binds that normally terminal Emacs can not use.
 
    ```sh
    XTerm*VT100.eightBitInput: false
-   XTerm*modifyOtherKeys: 1
    XTerm*vt100.formatOtherKeys: 1
    ```
 
