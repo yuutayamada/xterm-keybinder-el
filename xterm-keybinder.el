@@ -331,6 +331,18 @@ You can use this to insert xterm configuration by yourself."
                          "space" ?\s)))
       (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
+(defun xterm-keybinder-make-base-format (sym)
+  ;; See also ‘event-apply-XXX-modifier’
+  (let ((C-x@ "string(0x18) string(0x40)"))
+    (let-alist (assoc-default sym xterm-keybinder-table)
+      (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
+              .xtmod
+              (if (member sym '(S C s H A))
+                  ;; event modifier
+                  (format "%s string(%s)" C-x@ .suffix)
+                ;; \033[=
+                (format xterm-keybinder-format .spacer))))))
+
 ;;;###autoload
 (defun urxvt-keybinder-insert ()
   "Insert urxvt setting."
@@ -410,18 +422,6 @@ You can use this to insert xterm configuration by yourself."
                (getenv "COLORTERM" (selected-frame)))
           (urxvt-change-font-size -1)
         ad-do-it))))
-
-(defun xterm-keybinder-make-base-format (sym)
-  ;; See also ‘event-apply-XXX-modifier’
-  (let ((C-x@ "string(0x18) string(0x40)"))
-    (let-alist (assoc-default sym xterm-keybinder-table)
-      (format "  %s <KeyPress> %%s: %s string(0x%%x) \\n\\"
-              .xtmod
-              (if (member sym '(S C s H A))
-                  ;; event modifier
-                  (format "%s string(%s)" C-x@ .suffix)
-                ;; \033[=
-                (format xterm-keybinder-format .spacer))))))
 
 ;; For debug
 ;;  (message (key-description (read-key-sequence-vector "input: ")))
