@@ -331,6 +331,54 @@ You can use this to insert xterm configuration by yourself."
                          "space" ?\s)))
       (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
+(defun xterm-keybinder-insert-urxvt-config ()
+  "Insert urxvt setting."
+  (interactive)
+  (let ((fmt "-keysym.%s-0x%x 'string:%s%s' \\\n")
+        (control "@c")
+        (hyper   "@h")
+        (super   "@s")
+        (alt     "@a"))
+    ;; Avoid perl extensions (because I couldn't unbind M-s keybind...)
+    ;; Please let me know if someone know better way!
+    (insert "-xrm 'URxvt*perl-ext:' \\\n-xrm 'URxvt*perl-ext-common:' \\\n")
+    (cl-loop with C-S-keys = '(?\" ?# ?! ?$ ?% ?& ?* ?\( ?\) ?= ?+)
+             with C-keys = '(?\; ?, ?. ?')
+             with ins = (lambda (mod-urxvt c mod-emacs char)
+                          (insert (format
+                                   (if (eq ?' c)
+                                       (replace-regexp-in-string "'" "\"" fmt)
+                                     fmt)
+                                   mod-urxvt c mod-emacs char)))
+             for c from 32 to 126 ; start from 32 (space) to ~
+             for char = (char-to-string c)
+             ;; Hyper(Mod3) and Super(Mod4) keys
+             do (if (rassoc c xterm-keybinder-key-pairs)
+                    (progn
+                      (funcall ins "3-S" c "\033[======" char)
+                      (funcall ins "4-S" c "\033[=====" char))
+                  (funcall ins "3" c hyper char)
+                  (funcall ins "4" c super char))
+             ;; Control keys
+             if (<= ?0 c ?9)
+             do (funcall ins "C" c control char)
+             if (member c C-keys)
+             do (funcall ins "C" c control char)
+             if (or (member c C-S-keys) (<= ?A c ?Z))
+             do (funcall ins "C-S" c "\033[=" char)
+             ;; M-S-[A-Z] and C-M-S-[A-Z]
+             if (<= ?A c ?Z) do
+             (funcall ins "M-S" c "\033[===" char)
+             (funcall ins "C-M-S" c "\033[==" char))
+    ;; C-M-g
+    (insert (format fmt "C-M" ?g  "\033[====" "g"))
+    ;; C-M-space
+    (insert (format fmt "C-M" ?\  "\033[====" " "))
+    ;; C-[ -> A-\e ?
+    (insert (format "-keysym.C-0x5b 'string:%s' \\\n" alt))
+    ;; Shift space
+    (insert "-keysym.Shift-0x20 'string:@S '\n")))
+
 (defun xterm-keybinder-make-base-format (sym)
   ;; See also ‘event-apply-XXX-modifier’
   (let ((C-x@ "string(0x18) string(0x40)"))
