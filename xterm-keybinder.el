@@ -344,7 +344,7 @@ You can use this to insert xterm configuration by yourself."
     ;; Please let me know if someone know better way!
     (insert "-xrm 'URxvt*perl-ext:' \\\n-xrm 'URxvt*perl-ext-common:' \\\n")
     (cl-loop with C-S-keys = '(?\" ?# ?! ?$ ?% ?& ?* ?\( ?\) ?= ?+)
-             with C-keys = '(?\; ?, ?. ?')
+             with C-keys = '(?\; ?, ?. ?' ?-)
              with ins = (lambda (mod-urxvt c mod-emacs char)
                           (insert (format
                                    (if (eq ?' c)

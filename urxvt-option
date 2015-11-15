@@ -66,6 +66,7 @@
 -keysym.C-0x2c 'string:@c,' \
 -keysym.3-0x2d 'string:@h-' \
 -keysym.4-0x2d 'string:@s-' \
+-keysym.C-0x2d 'string:@c-' \
 -keysym.3-0x2e 'string:@h.' \
 -keysym.4-0x2e 'string:@s.' \
 -keysym.C-0x2e 'string:@c.' \
