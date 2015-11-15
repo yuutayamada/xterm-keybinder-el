@@ -18,6 +18,13 @@
 #                  ;; by text-scale-increase or text-scale-decrease.
 #                  (urxvt-keybinder-setup "xft:DejaVu Sans Mono" 12))))
 
+# Note:
+# I wanted to distinguish C-[ and ESC, even in the terminal Emacs, so
+# this package bind C-[ key to A-ESC.
+# But if you don't like this behavior, please delete following line
+# from this configuration (almost last part):
+#   -keysym.C-0x5b 'string:@a' \
+
 # Default setting (You can see xmodmap -pm):
 #   Mod3 as Hyper
 #   Mod4 as Super
