@@ -8,6 +8,15 @@
 #    urxvtopt=path/to/this-repository/urxvt-option
 #    eval "urxvt `${urxvtopt}` -e emacsclient -t -a ''"
 
+# Emacs' configuration:
+# (add-hook 'tty-setup-hook
+#           '(lambda ()
+#              (when (getenv "COLORTERM" (selected-frame))
+#                ;; Those font and size arguments are optional
+#                ;; if you specify those both args, you can change font size
+#                ;; by text-scale-increase or text-scale-decrease.
+#                (urxvt-keybinder-setup "xft:DejaVu Sans Mono" 12))))
+
 # Default setting (You can see xmodmap -pm):
 #   Mod3 as Hyper
 #   Mod4 as Super
