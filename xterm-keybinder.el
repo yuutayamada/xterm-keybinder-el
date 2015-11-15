@@ -380,6 +380,37 @@ You can use this to insert xterm configuration by yourself."
     ;; Shift space
     (insert "-keysym.Shift-0x20 'string:@S '\n")))
 
+(defvar urxvt-font-size nil)
+(defvar urxvt-font-name nil)
+(defun urxvt-change-font-size (arg &optional font)
+  "Helper function to change font size in urxvt."
+  (interactive)
+  (let ((size (+ arg urxvt-font-size)))
+    (setq urxvt-font-size size)
+    (send-string-to-terminal
+     (format "\33]50;%s:pixelsize=%d\007"
+             (or font urxvt-font-name) size))
+    (message (format "Font size: %i" urxvt-font-size))))
+
+;;;###autoload
+(defun urxvt-keybinder-setup (&optional font size)
+  "Enable Emacs keybinds even in the urxvt terminal Emacs."
+  (xterm-keybinder-setup)
+  ;; Helper functions
+  (when (and font size)
+    (setq urxvt-font-name font
+          urxvt-font-size size)
+    (defadvice text-scale-increase (around urxvt-advice activate)
+      (if (and (not (display-graphic-p))
+               (getenv "COLORTERM" (selected-frame)))
+          (urxvt-change-font-size 1)
+        ad-do-it))
+    (defadvice text-scale-decrease (around urxvt-advice activate)
+      (if (and (not (display-graphic-p))
+               (getenv "COLORTERM" (selected-frame)))
+          (urxvt-change-font-size -1)
+        ad-do-it))))
+
 (defun xterm-keybinder-make-base-format (sym)
   ;; See also ‘event-apply-XXX-modifier’
   (let ((C-x@ "string(0x18) string(0x40)"))
