@@ -135,7 +135,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (keys   .  ,chars)))
       (C-S   . ((xtmod    . "Ctrl Shift  ~Alt ~Super ~Hyper")
                 (spacer . "")
-                (Shift-keys   . ,(append '(?\s) A-Z))))
+                (Shift-keys   . ,(append '(?\s ?+) A-Z))))
       (C-M   . ((xtmod    . "Ctrl Alt ~Shift  ~Super ~Hyper")
                 (spacer . "===")
                 (keys   . (?\s ?g))))
