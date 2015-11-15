@@ -5,25 +5,26 @@
 #  Start Emacs or Emacsclinet like this:
 #
 #    #!/bin/sh
-#    urxvtopt=path/to/this-repository/urxvt-option
-#    eval "urxvt `${urxvtopt}` -e emacsclient -t -a ''"
+#    urxvt_e=/path/to/this/file/urxvt-e
+#    eval "${urxvt_e} emacsclient -t -a '' &"
 
 # Emacs' configuration:
-# (add-hook 'tty-setup-hook
-#           '(lambda ()
-#              (when (getenv "COLORTERM" (selected-frame))
-#                ;; Those font and size arguments are optional
-#                ;; if you specify those both args, you can change font size
-#                ;; by text-scale-increase or text-scale-decrease.
-#                (urxvt-keybinder-setup "xft:DejaVu Sans Mono" 12))))
+#
+#   (add-hook 'tty-setup-hook
+#             '(lambda ()
+#                (when (getenv "COLORTERM" (selected-frame))
+#                  ;; Those font and size arguments are optional
+#                  ;; if you specify those both args, you can change font size
+#                  ;; by text-scale-increase or text-scale-decrease.
+#                  (urxvt-keybinder-setup "xft:DejaVu Sans Mono" 12))))
 
 # Default setting (You can see xmodmap -pm):
 #   Mod3 as Hyper
 #   Mod4 as Super
 
 # Note that you can reproduce below configuration by M-x urxvt-keybinder-insert
-# except that \cat <<EOF and the end of EOF.
-\cat <<EOF
+
+urxvt \
 -xrm 'URxvt*perl-ext:' \
 -xrm 'URxvt*perl-ext-common:' \
 -keysym.3-S-0x20 'string:[====== ' \
@@ -323,5 +324,5 @@
 -keysym.C-M-0x67 'string:[====g' \
 -keysym.C-M-0x20 'string:[==== ' \
 -keysym.C-0x5b 'string:@a' \
--keysym.Shift-0x20 'string:@S '
-EOF
+-keysym.Shift-0x20 'string:@S ' \
+-e $@

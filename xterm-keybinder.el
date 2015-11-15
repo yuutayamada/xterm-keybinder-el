@@ -390,7 +390,7 @@ You can use this to insert xterm configuration by yourself."
     ;; C-[ -> A-\e ?
     (insert (format "-keysym.C-0x5b 'string:%s' \\\n" alt))
     ;; Shift space
-    (insert "-keysym.Shift-0x20 'string:@S '\n")))
+    (insert "-keysym.Shift-0x20 'string:@S ' \\\n")))
 
 (defvar urxvt-font-size nil)
 (defvar urxvt-font-name nil)
