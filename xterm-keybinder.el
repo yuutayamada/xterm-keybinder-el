@@ -21,8 +21,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; This package lets you key binds that normally terminal Emacs can not use in XTerm.
-;; (i.e., C-M-g)
+;; This package lets you key binds that normally terminal Emacs can
+;; not use in XTerm. (i.e., C-M-g)
 ;;
 ;; Summary of available key binds:
 ;;
@@ -42,8 +42,8 @@
 ;; 1. XTerm (of course)
 ;; 2. XTerm's configuration
 ;;
-;;    You may need to configure your .Xresources file if you don't use XTerm yet.
-;;    (You can update by xrdb command)
+;;    You may need to configure your .Xresources file if you don't use
+;;    XTerm yet. (You can update by xrdb command)
 ;;
 ;;    -- configuration
 ;;    XTerm*VT100.eightBitInput: false
