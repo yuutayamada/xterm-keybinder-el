@@ -331,7 +331,8 @@ You can use this to insert xterm configuration by yourself."
                          "space" ?\s)))
       (insert (format "%s" (substring last 0 (- (length last) 4)))))))
 
-(defun xterm-keybinder-insert-urxvt-config ()
+;;;###autoload
+(defun urxvt-keybinder-insert ()
   "Insert urxvt setting."
   (interactive)
   (let ((fmt "-keysym.%s-0x%x 'string:%s%s' \\\n")

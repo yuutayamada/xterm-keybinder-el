@@ -12,7 +12,8 @@
 #   Mod3 as Hyper
 #   Mod4 as Super
 
-# Note URxvt
+# Note that you can reproduce below configuration by M-x urxvt-keybinder-insert
+# except that \cat <<EOF and the end of EOF.
 \cat <<EOF
 -xrm 'URxvt*perl-ext:' \
 -xrm 'URxvt*perl-ext-common:' \
