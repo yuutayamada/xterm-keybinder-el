@@ -6,7 +6,13 @@
 #
 #    #!/bin/sh
 #    urxvt_e=/path/to/this/file/urxvt-e
-#    eval "${urxvt_e} emacsclient -t -a '' &"
+#    eval "${urxvt_e} -e emacsclient -t -a '' &"
+#
+#  To avoid urxvt's keybind like M-s, you can insert following
+#  configuration before -e option:
+#     --xrm 'URxvt*perl-ext:' \
+#     --xrm 'URxvt*perl-ext-common:' \
+#  or you can add above configuration in your .Xresources file.
 
 # Emacs' configuration:
 #
@@ -32,8 +38,6 @@
 # Note that you can reproduce below configuration by M-x urxvt-keybinder-insert
 
 urxvt \
--xrm 'URxvt*perl-ext:' \
--xrm 'URxvt*perl-ext-common:' \
 -keysym.3-S-0x20 'string:[====== ' \
 -keysym.4-S-0x20 'string:[===== ' \
 -keysym.3-S-0x21 'string:[======!' \
@@ -332,4 +336,4 @@ urxvt \
 -keysym.C-M-0x20 'string:[==== ' \
 -keysym.C-0x5b 'string:@a' \
 -keysym.Shift-0x20 'string:@S ' \
--e $@
+$@

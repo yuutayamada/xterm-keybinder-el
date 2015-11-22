@@ -352,9 +352,6 @@ You can use this to insert xterm configuration by yourself."
         (hyper   "@h")
         (super   "@s")
         (alt     "@a"))
-    ;; Avoid perl extensions (because I couldn't unbind M-s keybind...)
-    ;; Please let me know if someone know better way!
-    (insert "-xrm 'URxvt*perl-ext:' \\\n-xrm 'URxvt*perl-ext-common:' \\\n")
     (cl-loop with C-S-keys = '(?\" ?# ?! ?$ ?% ?& ?* ?\( ?\) ?= ?+)
              with C-keys = '(?\; ?, ?. ?' ?-)
              with ins = (lambda (mod-urxvt c mod-emacs char)
