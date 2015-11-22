@@ -138,7 +138,7 @@ Use standard US layout.  See also https://en.wikipedia.org/wiki/IBM_PC_keyboard.
                 (Shift-keys   . ,(append '(?\s ?+) A-Z))))
       (C-M   . ((xtmod    . "Ctrl Alt ~Shift  ~Super ~Hyper")
                 (spacer . "===")
-                (keys   . (?\s ?g))))
+                (keys   . (?\s ?g ?))))
       (C-M-S . ((xtmod    . "Ctrl Alt  Shift  ~Super ~Hyper")
                 (spacer . "=")
                 (Shift-keys . ,(append '(?\s) A-Z))))
@@ -387,7 +387,13 @@ You can use this to insert xterm configuration by yourself."
     ;; C-[ -> A-\e ?
     (insert (format "-keysym.C-0x5b 'string:%s' \\\n" alt))
     ;; Shift space
-    (insert "-keysym.Shift-0x20 'string:@S ' \\\n")))
+    (insert "-keysym.Shift-0x20 'string:@S ' \\\n")
+    ;; C-M-return
+    (insert "-keysym.C-M-Return \"\033[====\" \\\n")
+    ;; C-return
+    (insert "-keysym.C-Return 'string:@c' \\\n")
+    ;; Shift return
+    (insert "-keysym.Shift-Return 'string:@S' \\\n")))
 
 (defvar urxvt-font-size nil)
 (defvar urxvt-font-name nil)
