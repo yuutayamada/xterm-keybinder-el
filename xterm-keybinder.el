@@ -350,8 +350,7 @@ You can use this to insert xterm configuration by yourself."
   (let ((fmt "-keysym.%s-0x%x 'string:%s%s' \\\n")
         (control "@c")
         (hyper   "@h")
-        (super   "@s")
-        (alt     "@a"))
+        (super   "@s"))
     (cl-loop with C-S-keys = '(?\" ?# ?! ?$ ?% ?& ?* ?\( ?\) ?= ?+)
              with C-keys = '(?\; ?, ?. ?' ?-)
              with ins = (lambda (mod-urxvt c mod-emacs char)
@@ -384,8 +383,6 @@ You can use this to insert xterm configuration by yourself."
     (insert (format fmt "C-M" ?g  "\033[====" "g"))
     ;; C-M-space
     (insert (format fmt "C-M" ?\  "\033[====" " "))
-    ;; C-[ -> A-\e ?
-    (insert (format "-keysym.C-0x5b 'string:%s' \\\n" alt))
     ;; Shift space
     (insert "-keysym.Shift-0x20 'string:@S ' \\\n")
     ;; C-M-return

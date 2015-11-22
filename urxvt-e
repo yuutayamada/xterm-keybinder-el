@@ -334,7 +334,6 @@ urxvt \
 -keysym.4-S-0x7e 'string:[=====~' \
 -keysym.C-M-0x67 'string:[====g' \
 -keysym.C-M-0x20 'string:[==== ' \
--keysym.C-0x5b 'string:@a' \
 -keysym.Shift-0x20 'string:@S ' \
 -keysym.C-M-Return "[====" \
 -keysym.C-Return 'string:@c' \
