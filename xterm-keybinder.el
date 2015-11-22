@@ -350,7 +350,11 @@ You can use this to insert xterm configuration by yourself."
   (let ((fmt "-keysym.%s-0x%x 'string:%s%s' \\\n")
         (control "@c")
         (hyper   "@h")
-        (super   "@s"))
+        (super   "@s")
+        (hyper-num
+         (read-string "What is mod number for hyper? " "Mod3"))
+        (super-num
+         (read-string "What is mod number for super? " "Mod4")))
     (cl-loop with C-S-keys = '(?\" ?# ?! ?$ ?% ?& ?* ?\( ?\) ?= ?+)
              with C-keys = '(?\; ?, ?. ?' ?-)
              with ins = (lambda (mod-urxvt c mod-emacs char)
@@ -364,10 +368,10 @@ You can use this to insert xterm configuration by yourself."
              ;; Hyper(Mod3) and Super(Mod4) keys
              do (if (rassoc c xterm-keybinder-key-pairs)
                     (progn
-                      (funcall ins "3-S" c "\033[======" char)
-                      (funcall ins "4-S" c "\033[=====" char))
-                  (funcall ins "3" c hyper char)
-                  (funcall ins "4" c super char))
+                      (funcall ins (concat hyper-num "-S") c "\033[======" char)
+                      (funcall ins (concat super-num "-S") c "\033[=====" char))
+                  (funcall ins hyper-num c hyper char)
+                  (funcall ins super-num c super char))
              ;; Control keys
              if (<= ?0 c ?9)
              do (funcall ins "C" c control char)
