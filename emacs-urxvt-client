@@ -5,8 +5,8 @@
 #  Start Emacs or Emacsclinet like this:
 #
 #    #!/bin/sh
-#    urxvt_e=/path/to/this/file/urxvt-e
-#    eval "${urxvt_e} -e emacsclient -t -a '' &"
+#    emacs_urxvt_client=/path/to/this/file/emacs-urxvt-client
+#    eval "${emacs_urxvt_client} -e emacsclient -t -a '' &"
 #
 #  To avoid urxvt's keybind like M-s, you can insert following
 #  configuration before -e option:
