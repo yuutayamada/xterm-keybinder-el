@@ -1,8 +1,11 @@
 #!/bin/sh
 
 # How to use this file?
+# 1. Start urxvt daemon:
 #
-#  Start Emacs or Emacsclinet like this:
+#    $ urxvtd -q -o -f
+# 
+# 2. Start Emacs or Emacsclinet like this:
 #
 #    #!/bin/sh
 #    emacs_urxvt_client=/path/to/this/file/emacs-urxvt-client
@@ -10,9 +13,9 @@
 #
 #  To avoid urxvt's keybind like M-s, you can insert following
 #  configuration before -e option:
-#     --xrm 'URxvt*perl-ext:' \
-#     --xrm 'URxvt*perl-ext-common:' \
+#     --xrm 'URxvt*perl-ext:' --xrm 'URxvt*perl-ext-common:'
 #  or you can add above configuration in your .Xresources file.
+#  (without that --xrm option and quotes)
 
 # Emacs' configuration:
 #
@@ -25,12 +28,6 @@
 #                  (urxvt-keybinder-setup "xft:DejaVu Sans Mono" 12))))
 
 # Note:
-# I wanted to distinguish C-[ and ESC, even in the terminal Emacs, so
-# this package bind C-[ key to A-ESC.
-# But if you don't like this behavior, please delete following line
-# from this configuration (almost last part):
-#   -keysym.C-0x5b 'string:@a' \
-#
 # As default setting, I set mod3 as hyper and mod4 as super.
 # If you are using different number, please modify this config file or
 # make your own (you can see your modifier's numbers by xmodmap -pm).
