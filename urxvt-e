@@ -35,7 +35,7 @@
 # If you are using different number, please modify this config file or
 # make your own (you can see your modifier's numbers by xmodmap -pm).
 # To make new config, you can use `M-x urxvt-keybinder-insert`.
-urxvt \
+urxvtc \
 -keysym.Mod3-S-0x20 'string:[====== ' \
 -keysym.Mod4-S-0x20 'string:[===== ' \
 -keysym.Mod3-S-0x21 'string:[======!' \
