@@ -4,29 +4,30 @@
 # 1. Start urxvt daemon:
 #
 #    $ urxvtd -q -o -f
-# 
+#
 # 2. Start Emacs or Emacsclinet like this:
 #
 #    #!/bin/sh
 #    emacs_urxvt_client=/path/to/this/file/emacs-urxvt-client
-#    eval "${emacs_urxvt_client} -e emacsclient -t -a '' &"
+#    ${emacs-urxvt-client} -e emacscliet -t &
 #
 #  To avoid urxvt's keybind like M-s, you can insert following
 #  configuration before -e option:
 #     --xrm 'URxvt*perl-ext:' --xrm 'URxvt*perl-ext-common:'
 #  or you can add above configuration in your .Xresources file.
 #  (without that --xrm option and quotes)
-
+#
 # Emacs' configuration:
 #
-#   (add-hook 'tty-setup-hook
-#             '(lambda ()
-#                (when (getenv "COLORTERM" (selected-frame))
-#                  ;; Those font and size arguments are optional
-#                  ;; if you specify those both args, you can change font size
-#                  ;; by text-scale-increase or text-scale-decrease.
-#                  (urxvt-keybinder-setup "xft:DejaVu Sans Mono" 12))))
-
+# (require 'cl-lib)
+# (add-hook
+#  'tty-setup-hook
+#  '(lambda ()
+#     (cl-case (alist-get 'terminal-initted (terminal-parameters))
+#       (terminal-init-rxvt
+#        (when (getenv "COLORTERM" (selected-frame))
+#          (urxvt-keybinder-setup))))))
+#
 # Note:
 # As default setting, I set mod3 as hyper and mod4 as super.
 # If you are using different number, please modify this config file or
