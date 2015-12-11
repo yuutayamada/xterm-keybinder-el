@@ -31,7 +31,7 @@ Put below configuration to your .emacs
 (add-hook
  'tty-setup-hook
  '(lambda ()
-    (cl-case (alist-get 'terminal-initted (terminal-parameters))
+    (cl-case (assoc-default 'terminal-initted (terminal-parameters))
       (terminal-init-xterm
        (xterm-keybinder-setup)))))
 ```
@@ -57,7 +57,7 @@ Put below configuration to your .emacs
 (add-hook
  'tty-setup-hook
  '(lambda ()
-    (cl-case (alist-get 'terminal-initted (terminal-parameters))
+    (cl-case (assoc-default 'terminal-initted (terminal-parameters))
       (terminal-init-rxvt
        (when (getenv "COLORTERM" (selected-frame))
          (urxvt-keybinder-setup))))))
