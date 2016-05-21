@@ -435,12 +435,14 @@ FONT is the font name.
 
 If you set ABSOLUTE-SIZE, this function priors the size than
 OFFSET and sets the ABSOLUTE-SIZE."
-  (let ((size (or absolute-size (+ offset urxvt-font-size))))
-    (setq urxvt-font-size size)
-    (send-string-to-terminal
-     (format "\33]50;%s:pixelsize=%d\007"
-             (or font urxvt-font-name) size))
-    (message "Font size: %i" urxvt-font-size)))
+  (let ((size (or absolute-size (+ offset urxvt-font-size)))
+        (font (or font urxvt-font-name)))
+    (when font
+      (setq urxvt-font-size size)
+      (send-string-to-terminal
+       (format "\33]50;%s:pixelsize=%d\007"
+               font size))
+      (message "Font size: %i" urxvt-font-size))))
 
 ;;;###autoload
 (defun urxvt-keybinder-setup (&optional font size)
