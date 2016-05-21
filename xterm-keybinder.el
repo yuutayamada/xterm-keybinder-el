@@ -440,7 +440,7 @@ OFFSET and sets the ABSOLUTE-SIZE."
     (send-string-to-terminal
      (format "\33]50;%s:pixelsize=%d\007"
              (or font urxvt-font-name) size))
-    (message (format "Font size: %i" urxvt-font-size))))
+    (message "Font size: %i" urxvt-font-size)))
 
 ;;;###autoload
 (defun urxvt-keybinder-setup (&optional font size)
