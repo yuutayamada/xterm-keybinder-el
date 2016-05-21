@@ -435,7 +435,6 @@ FONT is the font name.
 
 If you set ABSOLUTE-SIZE, this function priors the size than
 OFFSET and sets the ABSOLUTE-SIZE."
-  (interactive)
   (let ((size (or absolute-size (+ offset urxvt-font-size))))
     (setq urxvt-font-size size)
     (send-string-to-terminal
