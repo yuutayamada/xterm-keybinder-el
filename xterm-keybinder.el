@@ -425,6 +425,7 @@ You can use this to insert xterm configuration by yourself."
 
 (defvar urxvt-font-size nil)
 (defvar urxvt-font-name nil)
+;;;###autoload
 (defun urxvt-change-font-size (offset &optional font absolute-size)
   "Change font size in URxvt.
 
