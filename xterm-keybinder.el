@@ -431,10 +431,12 @@ You can use this to insert xterm configuration by yourself."
 OFFSET is a variable to increase/decrease the font size from
 current font size.
 
-FONT is the font name.
+Optional variable FONT is the font name and as the default value,
+this functions uses the value that you will set in
+‘urxvt-keybinder-setup’.
 
-If you set ABSOLUTE-SIZE, this function priors the size than
-OFFSET and sets the ABSOLUTE-SIZE."
+If you set optional ABSOLUTE-SIZE variable, this function priors
+the size than OFFSET and sets the ABSOLUTE-SIZE."
   (let ((size (or absolute-size (+ offset urxvt-font-size)))
         (font (or font urxvt-font-name)))
     (when font
@@ -446,7 +448,12 @@ OFFSET and sets the ABSOLUTE-SIZE."
 
 ;;;###autoload
 (defun urxvt-keybinder-setup (&optional font size)
-  "Enable Emacs keybinds even in the urxvt terminal Emacs."
+  "Setup function for URxvt.
+You can also set FONT name and the SIZE.
+
+If you set BOTH FONT and SIZE, you can use ‘text-scale-increase’
+and ‘text-scale-decrease’ functions to adjust font size inside
+URxvt frame."
   (xterm-keybinder-setup)
   ;; Helper functions
   (when (and font size)
