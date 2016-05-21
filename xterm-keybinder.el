@@ -425,10 +425,10 @@ You can use this to insert xterm configuration by yourself."
 
 (defvar urxvt-font-size nil)
 (defvar urxvt-font-name nil)
-(defun urxvt-change-font-size (arg &optional font)
+(defun urxvt-change-font-size (arg &optional font absolute-size)
   "Helper function to change font size in urxvt."
   (interactive)
-  (let ((size (+ arg urxvt-font-size)))
+  (let ((size (or absolute-size (+ arg urxvt-font-size))))
     (setq urxvt-font-size size)
     (send-string-to-terminal
      (format "\33]50;%s:pixelsize=%d\007"
